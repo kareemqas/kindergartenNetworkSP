@@ -1,0 +1,130 @@
+﻿@model kindergartenNetwork.Models.NewsModels.EducationalResourceModel
+@using (Html.BeginForm("SaveEducationalResource", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "SaveAttachmentForm", name = "SaveAttachmentForm" }))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                @if (Model.OEducationalResources.Id > 0)
+                {
+                <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.Document </h4>
+                    <input type="hidden" value="@Model.OEducationalResources.Id" Name="Id" data-field="" />
+
+                }
+                else
+                {
+                    <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Add @kindergartenNetwork.Resources.PublicNews.Document </h4>
+
+                }
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal ">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="hdFileName" name="FilePath" value="@Model.OEducationalResources.FilePath" />
+                    <input type="hidden" id="hdImage" name="Image" value="@Model.OEducationalResources.Image" />
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Image</label>
+                        <div class="col-md-6">
+                            <div class="fileinput fileinput-new @*@(Model.ONews.Image != null ? " fileinput fileinput-exists" : "fileinput fileinput-new" )*@" data-provides="fileinput" style="width: 100%">
+                                <div class="fileinput-new thumbnail" style="width: 100%; height: 150px;">
+                                    <img id="img" src="@(Model.OEducationalResources.Id > 0 ? "/Content/UploadedFile/Albums/Thumbnail/" + Model.OEducationalResources.Image : "http://www.placehold.it/180x130/EFEFEF/AAAAAA&amp;text=no+image")" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; max-height: 150px;">
+
+                                </div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                        <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                        <input id="imgUploadUser" type="file" name="Image" accept="image/*">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Title</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <input id="tbFileTitle" class="form-control" name="FileTitle" placeholder="@kindergartenNetwork.Resources.PublicNews.Title" data-field="@kindergartenNetwork.Resources.PublicNews.Title" value="@Model.OEducationalResources.FileTitle" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.FileType</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <select class="selectpicker form-control" name="FileType" data-field="@kindergartenNetwork.Resources.PublicNews.FileType" data-live-search="true" title="@kindergartenNetwork.Resources.PublicNews.FileType">
+                                    @foreach (var type in Model.LstFileTypes)
+                                    {
+                                    <option @(type.Id == Model.OEducationalResources.FileType ? "selected" : "") value="@type.Id">@type.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Category</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <select class="selectpicker form-control" name="CategoryTypeId" data-field="@kindergartenNetwork.Resources.PublicNews.Category"  title="@kindergartenNetwork.Resources.PublicNews.Category">
+                                    @foreach (var type in Model.LstCategoryTypes)
+                                    {
+                                    <option @(type.Id == Model.OEducationalResources.CategoryTypeId ? "selected" : "") value="@type.Id">@(ViewBag.LangId == 1 ? type.NameAr : type.NameEn)</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>*@
+                    @*@if (Model.OEducationalResources.Id == 0)
+                    {*@
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Document</label>
+                            <div class="col-md-8">
+                                <div class="fileinput fileinput-new input-group" data-provides="fileinput" id="attachmentDiv" data-fileName="">
+                                    <div class="form-control" data-trigger="fileinput">
+                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                        <span class="fileinput-filename">@Model.OEducationalResources.FilePath</span>
+                                    </div>
+                                    <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectDocument</span>
+                                        <span class="fileinput-exists">
+                                            @kindergartenNetwork.Resources.PublicNews.Change
+                                        </span>
+                                        <input type="file" Id="fileUpload" name="FileName">
+                                    </span>
+                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    @*}*@
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Description</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <textarea id="tbFileDescription" class="form-control" name="FileDescription" placeholder="@kindergartenNetwork.Resources.PublicNews.Description" data-field="@kindergartenNetwork.Resources.PublicNews.Description">@Model.OEducationalResources.FileDescription</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+
+    </div>
+}

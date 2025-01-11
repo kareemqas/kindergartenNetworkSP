@@ -1,0 +1,112 @@
+﻿@model kindergartenNetwork.Models.CustomPrincipal
+<div class="page-sidebar-wrapper">
+    <!-- END SIDEBAR -->
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar navbar-collapse collapse">
+        <!-- BEGIN SIDEBAR MENU -->
+        <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+        <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+        <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+        <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <ul class="page-sidebar-menu  page-header-fixed page-sidebar-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+
+            <li class="sidebar-toggler-wrapper hide">
+                <div class="sidebar-toggler">
+                    <span></span>
+                </div>
+            </li>
+            <li class="sidebar-search-wrapper">
+                <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                <form class="sidebar-search" onsubmit="return false;">
+                    <a href="javascript:;" class="remove">
+                        <i class="icon-close"></i>
+                    </a>
+                    <div class="input-group">
+                        <input type="text" id="txtSidebarSearch" class="form-control font-white" placeholder="@kindergartenNetwork.Resources.PublicNews.Search...">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
+                    </div>
+                </form>
+                <!-- END RESPONSIVE QUICK SEARCH FORM -->
+            </li>
+            @if (Model != null)
+            {
+                var mainPages = kindergartenNetwork.Helper.CommonHelpExtension.GetMenuPages(Model.UserTypeId, true).OrderBy(x=>x.OrderId).ToList();
+
+                string currentPage = ViewContext.RouteData.Values["controller"] + "/" + ViewContext.RouteData.Values["action"];
+                foreach (var mp in mainPages.Where(p => p.ParentId == 0))
+                {
+                    <li class="nav-item @( (currentPage.ToLower() == mp.Link?.ToLower()) || mp.ChildPages.Any(x => x.Link?.ToLower() == currentPage.ToLower()) ? "active" : "") ">
+                        <a href="@(!string.IsNullOrEmpty(mp.Link) ? "/" + mp.Link.Replace("Index", "") + "" : "javascript:;")" class="nav-link nav-toggle">
+                            <i class="@mp.Icon"></i>
+                            <span class="title">@mp.Name</span>
+                            @if (mainPages.Count(p => p.ParentId == mp.Id) > 0)
+                            {
+                                <span class="arrow open"></span>
+                            }
+                            @if (currentPage.ToLower() == mp.Link?.ToLower() || mp.ChildPages.Any(x => x.Link?.ToLower() == currentPage.ToLower()) || (mp.ChildPages.Any()&&mp.ChildPages.Any(x=>x.ChildPages.Any(i=>i.Link?.ToLower()==currentPage.ToLower()))))
+                            {
+                                <span class="selected"></span>
+                            }
+                    </a>
+                        @if (mainPages.Count(p => p.ParentId == mp.Id) > 0)
+                        {
+                            @: <ul class="sub-menu">
+                        }
+
+                        @RenderMenuItem(mainPages, mp)
+
+                        @if (mainPages.Count(p => p.ParentId == mp.Id) > 0)
+                        {
+                            @: </ul>
+                        }
+                    </li>
+
+                }
+            }
+            @helper RenderMenuItem(List<DTO.Account.Pages> menuList, DTO.Account.Pages mi)
+            {
+                foreach (var cp in menuList.Where(p => p.ParentId == mi.Id))
+                {
+                    string currentPage = ViewContext.RouteData.Values["controller"] + "/" + ViewContext.RouteData.Values["action"];
+                    @:<li class="nav-item @( (currentPage.ToLower() == cp.Link?.ToLower()) || cp.ChildPages.Any(X => X.Link?.ToLower() == currentPage.ToLower()) ? "active open" : "")">
+                    <a href="@(!string.IsNullOrEmpty(cp.Link) ? "/" + cp.Link?.Replace("Index", "") + "" : "javascript:;" )" class="nav-link @(menuList.Count(p => p.ParentId == cp.Id) > 0 ? "nav-toggle" : "") ">
+                        <i class="@cp.Icon"></i>
+                        <span class="title">@cp.Name</span>
+                        @if (menuList.Count(p => p.ParentId == cp.Id) > 0)
+                        {
+                            <span class="arrow"></span>
+                        }
+                    </a>
+                    if (menuList.Count(p => p.ParentId == cp.Id) > 0)
+                    {
+                        @:<ul class="sub-menu">
+                    }
+
+                    @RenderMenuItem(menuList, cp)
+
+                    if (menuList.Count(p => p.ParentId == cp.Id) > 0)
+                    {
+                        @: </ul>
+                    }
+                    else
+                    {
+                        @: </li>
+                    }
+
+                }
+            }
+
+        </ul>
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+</div>

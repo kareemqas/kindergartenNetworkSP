@@ -1,0 +1,109 @@
+﻿@model kindergartenNetwork.Models.PublicNews.SingelNews
+@{
+    ViewBag.Title = "تفاصيل الخبر | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+    var pageHdr = DAL.News.PagesHdr.GetPagesHdr(new DTO.News.PagesHdr { Id = 3 }).Results.First();
+}
+@section meta{
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="@(String.Format("{0}://{1}{2}",Request.Url.Scheme,Request.Url.Authority,Url.Content("/Content/UploadedFile/News/Large/"+Model.ONews.Image)))" />
+    <meta property="og:url" content="@Request.Url">
+    <meta property="og:site_name" content="@kindergartenNetwork.Resources.PublicNews.ProjectName">
+    <meta property="og:description" content="@(!String.IsNullOrEmpty(Model.ONews.Summary)? Model.ONews.Summary: Model.ONews.Title)">
+}
+<!-- Start Page Title Area -->
+<div class="page-title-area bg-14" style="background-image: url(../../Content/UploadedFile/News/Original/@pageHdr.Image)">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>الأخبار</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        الرئيسية
+                    </a>
+                </li>
+
+                <li class="active">تفاصيل الخبر</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Blog Details Area -->
+<div class="single-blog-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-blog-content">
+                    <div class="blog-top-content">
+
+
+                        <h3>@Model.ONews.Title</h3>
+
+                        <ul class="post-details">
+                            <li>
+                                <i class='bx bx-user'></i>
+                                بواسطة <a href="#">@Model.ONews.OInsertedBy.Name</a>
+                            </li>
+                            <li>
+                                <i class='bx bx-calendar'></i>
+                                تم النشر في @Model.ONews.PublishDate.ToString("dd/MM/yyyy")
+                            </li>
+                        </ul>
+
+                        <img style="width: 810px; height:510px" src="/Content/UploadedFile/News/Original/@Model.ONews.Image" alt="Image">
+
+                        <h3 class="mb-2">تفاصيل الخبر</h3>
+
+                        @Html.Raw(Model.ONews.Details)
+                    </div>
+
+                    <ul class="social-wrap">
+                        <li>
+                            <span>@kindergartenNetwork.Resources.PublicNews.YouCanShareIt:</span>
+                        </li>
+
+                        <li class="col-sm-6 col-xs-12">
+                            <div class="share"></div>
+                        </li>
+                        @*<li>
+                            <a href="#" target="_blank">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <i class="bx bxl-youtube"></i>
+                            </a>
+                        </li>*@
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Blog Details Area -->
+
+@section OnReadyScripts{
+    jQuery(".share").jsSocials({
+    showLabel: false,
+    showCount: false,
+    shareIn: "popup",
+    url: "@Request.Url",
+    text: "@Model.ONews.Title",
+    shares: ["facebook", "twitter",  "email", "linkedin", "whatsapp"]
+    });
+}

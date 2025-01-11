@@ -1,0 +1,144 @@
+﻿@model kindergartenNetwork.Models.NewsModels.MediaModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            @if (Model.OMedia.Id > 0)
+            {
+            <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.Media </h4>
+            }
+            else
+            {
+            <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Add @kindergartenNetwork.Resources.PublicNews.Media </h4>
+
+            }
+        </div>
+        <div class="modal-body">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#menu1">@kindergartenNetwork.Resources.PublicNews.Upload @kindergartenNetwork.Resources.PublicNews.Media</a></li>
+                <li><a data-toggle="tab" href="#menu2">@kindergartenNetwork.Resources.PublicNews.Upload @kindergartenNetwork.Resources.PublicNews.MultiImages</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="menu1" class="tab-pane fade in active">
+                    <div class="alert alert-danger display-hide">
+                        <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                    </div>
+                    <div class="alert alert-success display-hide">
+                        <button class="close" data-close="alert"></button>
+                    </div>
+                    <div class="form-horizontal ">
+                        @using (Html.BeginForm("SaveMedia", "ControlPanel", FormMethod.Post, new { onsubmit = "return false;", id = "SaveMediaForm", name = "SaveMediaForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" value="@Model.OMedia.Id" Name="Id" data-field="" />
+
+                            <input type="hidden" id="hdImage" name="FilePath" value="@Model.OMedia.FilePath" />
+                            <div class="row">
+                                <div class="@(Model.OMedia.MediaType == 11 ? "col-md-7" : "col-md-12") mediaDiv">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.MediaType</label>
+                                        <div class="col-md-8">
+                                            <select class="selectpicker form-control ddlMediaType" name="MediaType" data-field="@kindergartenNetwork.Resources.PublicNews.Type" title="@kindergartenNetwork.Resources.PublicNews.Type">
+                                                @foreach (var type in Model.ListMediaType)
+                                                {
+                                                    <option @(type.Id == Model.OMedia.MediaType ? "selected" : "") value="@type.Id">@type.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group divExternalLink">
+                                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Link</label>
+                                        <div class="col-md-8">
+                                            <input type="text" id="tbExternalLink" value="@Model.OMedia.ExternalLink" name="ExternalLink" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.Link" data-field="@kindergartenNetwork.Resources.PublicNews.Link" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"></label>
+                                        <div class="col-md-8">
+                                            <div class="mt-checkbox-inline">
+                                                <label class="mt-checkbox">
+                                                    <input type="checkbox" id="cbIsInMainPage" name="IsInMainPage" value="true" @(Model.OMedia.IsInMainPage ? "checked" : "")>@kindergartenNetwork.Resources.PublicNews.InMainPage
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 imageDiv" style="display: @(Model.OMedia.MediaType == 11 ? "block" : "none")">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="fileinput fileinput-new @*@(Model.ONews.Image != null ? " fileinput fileinput-exists" : "fileinput fileinput-new" )*@" data-provides="fileinput" style="width: 100%">
+                                                <div class="fileinput-new thumbnail" style="width: 100%; height: 150px;">
+                                                    <img id="img" src="@(Model.OMedia.Id > 0 ? "/Content/UploadedFile/Albums/Thumbnail/" + Model.OMedia.FilePath : "http://www.placehold.it/180x130/EFEFEF/AAAAAA&amp;text=no+image")" alt="" />
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; max-height: 150px;">
+
+                                                </div>
+                                                <div>
+                                                    <span class="btn btn-default btn-file">
+                                                        <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                                        <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                                        <input id="imgUploadUser" type="file" name="Image" accept="image/*">
+                                                    </span>
+                                                    <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.DescriptionAr</label>
+                                <div class="col-md-8">
+                                    <textarea rows="3" class="form-control" name="Caption" placeholder="@kindergartenNetwork.Resources.PublicNews.DescriptionAr" data-field="@kindergartenNetwork.Resources.PublicNews.DescriptionAr">@Model.OMedia.Caption</textarea>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Description</label>
+                            <div class="col-md-8">
+                                <textarea rows="3" class="form-control"id="tbmCaption" placeholder="@kindergartenNetwork.Resources.PublicNews.Description" data-field="@kindergartenNetwork.Resources.PublicNews.Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group">
+                            <div class="col-md-12 dropz" style="padding-top: 20px">
+                                @*<div id="dropZoneImages" class="dropzone" ></div>*@
+
+                                <form action="/ControlPanel/UploadSaveAlbumImg" id="dropZoneImages" class="dropzone">
+                                    <input type="hidden" id="hdAlbums" value="" accept="image/*" />
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple accept="image/*" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="modal-footer">
+                            <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>

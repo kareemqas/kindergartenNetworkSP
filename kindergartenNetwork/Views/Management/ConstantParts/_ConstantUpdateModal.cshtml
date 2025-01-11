@@ -1,0 +1,83 @@
+﻿@model kindergartenNetwork.Models.MainModels.UpdateConstantModel
+@using (Html.BeginForm("UpdateConstant", "Management", FormMethod.Post, new { @onsubmit = "return false;", @id = "UpdateConstantForm", name = "UpdateConstantForm" }))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">@kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.Constant </h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal">
+                    <input type="hidden" value="@Model.OConstant.Id" Name="Id" data-field="" />
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"> @kindergartenNetwork.Resources.PublicNews.Name</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbNameAr" name="Name" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" data-field="@kindergartenNetwork.Resources.PublicNews.Name" value="@Model.OConstant.Name" />
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-md-3 control-label"> @kindergartenNetwork.Resources.PublicNews.NameEn</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbNameEn" name="NameEn" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.NameEn" data-field="@kindergartenNetwork.Resources.PublicNews.NameEn" value="@Model.OConstant.NameEn" />
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Comment</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbComment" name="Comment" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Comment" data-field="@kindergartenNetwork.Resources.PublicNews.Comment" value="@Model.OConstant.Comment" />
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Icon</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbIcon" name="Icon" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Icon" data-field="@kindergartenNetwork.Resources.PublicNews.Icon" value="@Model.OConstant.Icon" />
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.ParentConstant</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <select class="selectpicker form-control input-md input-medium" name="ParentId" data-field="@kindergartenNetwork.Resources.PublicNews.ParentConstant" data-live-search="true" title="@kindergartenNetwork.Resources.PublicNews.SelectParent">
+                                    <option @(Model.OConstant.ParentId == 0 ? "selected" : "" ) value="0">@kindergartenNetwork.Resources.PublicNews.ParentConstant</option>
+                                    @foreach (var constant in Model.LstConstants)
+                                    {
+                                        <option @(constant.Id == Model.OConstant.ParentId ? "selected" : "" ) value="@constant.Id">@constant.Name</option>
+                                    }
+                                </select>
+
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+}

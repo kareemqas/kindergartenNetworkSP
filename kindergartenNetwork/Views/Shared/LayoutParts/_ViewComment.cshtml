@@ -1,0 +1,54 @@
+﻿@model kindergartenNetwork.Models.NewsModels.CommentModel
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.CommentOnArticle </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Article :</label>
+                        <div class="col-md-10">
+                            <p class="form-control-static"> @Model.OComment.OArticle.Title </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Name :</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static"> @Model.OComment.Name </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Email :</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static"> @Model.OComment.Email </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Comment :</label>
+                        <div class="col-md-10">
+                            <p class="form-control-static"> @Model.OComment.Comment </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                @if (!Model.OComment.IsApproved.Value)
+                {
+                    <button type="button" class="btn green btn-outline btnApproveComment" data-id="@Model.OComment.Id">@kindergartenNetwork.Resources.PublicNews.ApproveComment</button>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+}

@@ -1,0 +1,196 @@
+﻿@using DTO.News
+@model kindergartenNetwork.Models.NewsModels.StaticPageModel
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.AboutUs + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+    var pageHdr = DAL.News.PagesHdr.GetPagesHdr(new PagesHdr {Id = 1}).Results.First();
+}
+
+
+<div class="page-title-area bg-1" style="background-image: url(../Content/UploadedFile/News/Original/@pageHdr.Image)">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>من نحن</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        الرئيسية
+                    </a>
+                </li>
+
+                <li class="active">من نحن</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Education Area -->
+<section class="education-area-two ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="education-content">
+                    <span class="top-title">من نحن</span>
+                    <h2> @Model.OStaticPage.Title</h2>
+                    <p>
+                        @Html.Raw(Model.OStaticPage.Description)
+                    </p>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul>
+                                @foreach (var goal in Model.LstOurGoals.Where(x=>x.Id<3))
+                                {
+                                    <li>
+                                        <i class="bx bx-check"></i>
+                                        @goal.Title
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul>
+                                @foreach (var goal in Model.LstOurGoals.Where(x => x.Id > 2))
+                                {
+                                    <li>
+                                        <i class="bx bx-check"></i>
+                                        @goal.Title
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="education-img-wrap">
+                    <div class="education-img-2">
+                        <img src="/Content/UploadedFile/News/Original/@Model.OStaticPage.Image" height="210" width="355" alt="Image">
+                    </div>
+
+                    <div class="education-img-3">
+                        <img src="/Content/UploadedFile/News/Original/@Model.OStaticPage.Image2" height="200" width="256" alt="Image">
+                    </div>
+
+                    <div class="education-img-4">
+                        <img src="/Content/UploadedFile/News/Original/@Model.OStaticPage.Image3" height="290" width="390" alt="Image">
+                    </div>
+
+                    <div class="education-shape-1">
+                        <img src="/Content/defaultTheme/assets/img/education-shape-1.jpg" alt="Image">
+                    </div>
+
+                    <div class="education-shape-2">
+                        <img src="/Content/defaultTheme/assets/img/education-shape-2.png" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Education Area -->
+<!-- Start Affordable Area -->
+<section class="affordable-area f5f6fa-bg-color pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span>آلية العمل في مؤسستنا</span>
+            <h2>منهجية العمل لدى مؤسستنا</h2>
+        </div>
+
+        <div class="row">
+            @if (Model.OurMethodology != null)
+            {
+                var i = 0;
+                foreach (var meth in Model.OurMethodology)
+                {
+                    i++;
+                    var txt = "";
+                    switch (i)
+                    {
+                        case 1:
+                        {
+                            txt = "one";
+                            break;
+                        }
+                        case 2:
+                        {
+                            txt = "two";
+                            break;
+                        }
+                        case 3:
+                        {
+                            txt = "three";
+                            break;
+                        }
+                        case 4:
+                        {
+                            txt = "four";
+                            break;
+                        }
+                    }
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-affordable @txt">
+                            <i class="@meth.Icon"></i>
+
+                            <h3>@meth.Title</h3>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+
+<!-- Start Teachers Area -->
+@if (Model.LstTeamMembers != null && Model.LstTeamMembers.Count > 0)
+{
+    <section class="teachers-area-three pt-100 pb-70">
+        <div class="container">
+            <div class="section-title">
+                <span>فريق العمل</span>
+                <h2>فريق يتمتع بأفضل خبرة</h2>
+            </div>
+
+            <div class="row">
+                @foreach (var member in Model.LstTeamMembers)
+                {
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-teachers">
+                            <img style="max-height: 150px" src="/Content/UploadedFile/Account/Avatar/Original/@member.Avatar" onerror="this.onerror = null;this.src = '/Content/UploadedFile/Account/Avatar/NoImage.png';" alt="Image">
+
+                            <div class="teachers-content">
+                                <ul>
+                                    @if (!string.IsNullOrEmpty(member.InstgramUrl))
+                                    {
+                                        <li>
+                                            <a href="@member.InstgramUrl"><i class="bx bxl-instagram"></i></a>
+                                        </li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(member.FaceBookUrl))
+                                    {
+                                        <li>
+                                            <a href="@member.FaceBookUrl"><i class="bx bxl-facebook"></i></a>
+                                        </li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(member.LinkedInUrl))
+                                    {
+                                        <li>
+                                            <a href="@member.LinkedInUrl"><i class="bx bxl-linkedin-square"></i></a>
+                                        </li>
+                                    }
+                                </ul>
+
+                                <h3>@member.Name</h3>
+                                <span>@member.JobTitle</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,183 @@
+﻿@model kindergartenNetwork.Models.MainModels.UserModel
+@using (Html.BeginForm("InsertUser", "Management", FormMethod.Post, new {@onsubmit = "return false;", @id = "InsertUserForm",name="InsertUserForm"}))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">@kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.User </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Name</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbName" name="Name" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" data-field="@kindergartenNetwork.Resources.PublicNews.Name"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Pass</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="password" id="tbPass" name="Pass" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Pass" data-field="@kindergartenNetwork.Resources.PublicNews.Pass"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.ConfirmPassword</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="password" id="tbConfirmPassword" name="ConfirmPassword" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.ConfirmPassword" data-field="@kindergartenNetwork.Resources.PublicNews.ConfirmPassword"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Email</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="Email" id="tbEmail" name="Email" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Email" data-field="@kindergartenNetwork.Resources.PublicNews.Email"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.kindergartenNetwork.EmailPassword</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="password" id="tbEPass" name="EmailPassword" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.kindergartenNetwork.EmailPassword" data-field="@kindergartenNetwork.Resources.kindergartenNetwork.EmailPassword"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Gender</label>
+                        <div class="col-md-9">
+                            <div class="radio-list">
+                                <div class="formElement">
+                                    <label class="radio-inline ">
+                                        <input type="radio" id="tbMale" name="Gender" value="M" data-field="@kindergartenNetwork.Resources.PublicNews.Male"/>@kindergartenNetwork.Resources.PublicNews.Male
+                                        <span class="help-inline"></span>
+                                    </label>
+
+                                    <label class="radio-inline ">
+                                        <input type="radio" id="tbFemale" name="Gender" value="F" data-field="@kindergartenNetwork.Resources.PublicNews.Female"/>@kindergartenNetwork.Resources.PublicNews.Female
+                                        <span class="help-inline"></span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Mobile</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbMobile" required name="Mobile" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Mobile" data-field="@kindergartenNetwork.Resources.PublicNews.Mobile"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.UserType</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <select class="form-control input-md input-medium selectpicker" name="UserTypeId" data-field="@kindergartenNetwork.Resources.PublicNews.UserType">
+                                    <option value="">@kindergartenNetwork.Resources.PublicNews.Select</option>
+                                    @foreach (var userType in Model.LstUserTypes)
+                                    {
+                                        <option value="@userType.Id">@userType.Name</option>
+                                    }
+
+                                </select>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.ManagerGroupId</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <select class="form-control input-md input-medium selectpicker" name="ManagerGroupId" data-field="@kindergartenNetwork.Resources.PublicNews.ManagerGroupId">
+                                    <option value="">@kindergartenNetwork.Resources.PublicNews.Select</option>
+                                    @foreach (var userType in Model.LstUserTypes)
+                                    {
+                                        <option value="@userType.Id">@userType.Name</option>
+                                    }
+
+                                </select>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <div class="mt-checkbox-inline">
+                                <div class="formElement">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cbIsActive" name="IsActive" value="true" data-field="@kindergartenNetwork.Resources.PublicNews.IsActive"> @kindergartenNetwork.Resources.PublicNews.IsActive
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="formElement">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cbTraceUserActivity" name="TraceUserActivity" value="true" data-field="@kindergartenNetwork.Resources.PublicNews.TraceUserActivity"> @kindergartenNetwork.Resources.PublicNews.TraceUserActivity
+                                        <span></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hdImage" name="Avatar" value=""/>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Avatar</label>
+                        <div class="col-md-9">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                        <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                        <input id="imgUploadUser" type="file" name="...">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                 <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                 <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+             </div>
+            
+        </div>
+    </div>
+}

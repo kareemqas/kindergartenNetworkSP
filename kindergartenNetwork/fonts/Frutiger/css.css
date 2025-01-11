@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'light';
+  font-style: normal;
+    src: url("Frutiger light.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'roman';
+  font-style: normal;
+    src: url("Frutiger roman.ttf") format('truetype');
+}@font-face {
+  font-family: 'bold';
+  font-style: normal;
+    src: url("Frutiger bold.ttf") format('truetype');
+}@font-face {
+  font-family: 'black';
+  font-style: normal;
+    src: url("Frutiger black.ttf") format('truetype');
+}@font-face {
+  font-family: 'Dinar';
+  font-style: normal;
+    src: url("GE_Dinar_One_Light.otf") format('truetype');
+}
+
+ /*body {
+    font-family: 'light' !important;
+}*/
+*:not(.fa):not(.fullscreen):not([class^='icon-']):not(.glyphicon ) {
+    font-family: 'light' !important;
+}

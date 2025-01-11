@@ -1,0 +1,98 @@
+﻿@model kindergartenNetwork.Models.NewsModels.StaticDataModel
+@using (Html.BeginForm("UpdateStaticData", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "UpdateStaticData", name = "UpdateStaticData" }))
+{
+    var i = 0;
+    <div class="portlet light portlet-fit bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject font-red-thunderbird bold uppercase"> @kindergartenNetwork.Resources.PublicNews.OurMethodology </span>
+            </div>
+        </div>
+        <div class="portle-body">
+
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal ">
+                    @Html.AntiForgeryToken()
+                    @foreach (var data in Model.LstStaticData)
+                    {
+                        i++;
+                        <div class="form-group static" id="txt_@data.Id" SID="@data.Id">
+                            <div class="col-md-1 achieve-shape shape-@i">
+                                <i class="@data.Icon"></i>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="formElement">
+                                    <input type="text" name="txtTitle" value="@data.Title" class="form-control txtTitle" placeholder="@kindergartenNetwork.Resources.PublicNews.Title" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="formElement">
+                                    <input type="text" name="txtData" value="@data.Data" class="form-control txtData" placeholder="@kindergartenNetwork.Resources.PublicNews.Details" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn dark btn-outline closeModal">@kindergartenNetwork.Resources.PublicNews.Close</button>*@
+                <button type="submit" class="btn green btn-outline" id="btnAdd">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+    </div>
+}
+@section style{
+    <link href="~/Content/defaultTheme/assets/css/flaticon.css" rel="stylesheet" />
+    <style>
+
+        .achieve-shape {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+            .achieve-shape i {
+                font-size: 30px;
+                position: absolute;
+                top: 15px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                color: #52a0dd;
+            }
+
+            .achieve-shape.shape-2 i {
+                color: #925eca;
+            }
+
+            .achieve-shape.shape-3 i {
+                color: #fa9231;
+            }
+
+            .achieve-shape.shape-4 i {
+                color: #fc2f5c;
+            }
+    </style>
+}
+@section scripts{
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initStaticData();
+}

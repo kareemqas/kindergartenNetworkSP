@@ -1,0 +1,18 @@
+#sidebarSearch::-webkit-input-placeholder {
+    color: #b4bcc8 !important;
+}
+
+.sidebar-search:-moz-placeholder { /* Firefox 18- */
+    color: #b4bcc8 !important;
+}
+
+#sidebarSearch::-moz-placeholder { /* Firefox 19+ */
+    color: #b4bcc8 !important;
+}
+
+#sidebarSearch:-ms-input-placeholder {
+    color: #b4bcc8 !important;
+}
+#rtl-support .tt-dropdown-menu {
+    text-align: right !important;
+}

@@ -1,0 +1,98 @@
+﻿@model kindergartenNetwork.Models.MainModels.ProfileModel
+	<div class="modal-dialog">
+		<div class="modal-content">
+		    <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		        <h4 class="modal-title">@kindergartenNetwork.Resources.PublicNews.MyProfile</h4>
+		    </div>
+         @using (Html.BeginForm("UpdateMyProfile", "Management", FormMethod.Post, new {@onsubmit = "return false;", @class = "form-horizontal form-row-seperated", @id = "MyProfileModel",@name="MyProfileModel"}))
+         {
+              <div class="modal-body">
+              <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal">
+                  <input type="hidden" data-field="UserId" name="Id" Id="Id" value="@Model.OUserProfile.Id"/>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Name</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <input type="text" id="tbName" name="Name" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" data-field="@kindergartenNetwork.Resources.PublicNews.Name" value="@Model.OUserProfile.Name" />
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Email</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <input type="Email" id="tbEmail" name="Email" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Email" data-field="@kindergartenNetwork.Resources.PublicNews.Email" value="@Model.OUserProfile.Email"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Gender</label>
+                        <div class="col-md-8">
+                            <div class="radio-list">
+                                <div class="formElement">
+                                    <label class="radio-inline ">
+                                        <input type="radio" id="tbMale" name="Gender" value="M" @(Model.OUserProfile.Gender=="M" ? "checked='checked'" : "") data-field="@kindergartenNetwork.Resources.PublicNews.Male"/>@kindergartenNetwork.Resources.PublicNews.Male
+                                        <span class="help-inline"></span>
+                                    </label>
+
+                                    <label class="radio-inline ">
+                                        <input type="radio" id="tbFemale" name="Gender" value="F" @(Model.OUserProfile.Gender=="F" ? "checked='checked'" : "") data-field="@kindergartenNetwork.Resources.PublicNews.Female"/>@kindergartenNetwork.Resources.PublicNews.Female
+                                        <span class="help-inline"></span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Mobile</label>
+                        <div class="col-md-8">
+                            <div class="formElement">
+                                <input type="text" id="tbMobile" required name="Mobile" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Mobile" data-field="@kindergartenNetwork.Resources.PublicNews.Mobile" value="@Model.OUserProfile.Mobile"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Avatar</label>
+                        <div class="col-md-8">
+                            
+                            <a id="imglnk" target="_blank">
+                                <img id="img" class="imgUserlogo" style="width: 200px;" imgName="@Model.OUserProfile.Avatar" src="/Content/UploadedFile/Account/Avatar/Original/@Model.OUserProfile.Avatar" />
+                            </a>
+                            <div class="UploadContainerUser">
+                                <input id="imgUploadUser" type="file" name="Avatar" data-field="@kindergartenNetwork.Resources.PublicNews.Avatar" />@kindergartenNetwork.Resources.PublicNews.SelectImage
+                            </div> 
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                 <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+
+             </div>
+         }
+		</div>
+			       
+	</div>
+			    
+

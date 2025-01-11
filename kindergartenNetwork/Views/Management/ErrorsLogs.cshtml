@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject font-red-thunderbird bold uppercase">@ViewBag.PageTitle</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="portlet">
+                    @*<div class="portlet-title">
+                            font-family: 'Poppins', 'Roboto';
+                            <div class="caption">
+                                <i class="fa fa-gift"></i>Login Logs
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
+                                <a href="javascript:;" class="reload" data-original-title="" title=""> </a>
+                                <a href="" class="fullscreen" data-original-title="" title=""> </a>
+                                <a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+                            </div>
+                        </div>*@
+                    <div class="portlet-body">
+                        <div class="table-scrollable">
+                            <table class="table table-bordered table-advance table-hover" id="tblErrorsLogs" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">IP</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.BrowserInfo</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.Browser</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.ErorrMsg</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.Link</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.Date</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.IsSolved</th>
+                                        <th scope="col">Ajax</th>
+                                        <th scope="col">@kindergartenNetwork.Resources.PublicNews.Data</th>
+                                        <th scope="col"><i class="icon-settings"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Portlet PORTLET-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section style{
+    @Styles.Render("~/DataTables/css")
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/ManagementScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ManagementScripts.initErrorsLogs();
+}

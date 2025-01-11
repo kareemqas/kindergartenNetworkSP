@@ -1,0 +1,128 @@
+﻿@model kindergartenNetwork.Models.MainModels.InsertUpdatePageModel
+@using (Html.BeginForm("UpdatePages", "Management", FormMethod.Post, new { @onsubmit = "return false;", @id = "UpdatePagesForm", name = "UpdatePagesForm" }))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">@kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.Page </h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal">
+                    <input type="hidden" data-field="PageId" name="Id" Id="Id" value="@Model.OPage.Id"/>
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Name</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbName" name="Name" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" data-field="@kindergartenNetwork.Resources.PublicNews.Name" value="@Model.OPage.Name"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.NameEn</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbNameEn" name="NameEn" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.NameEn" data-field="@kindergartenNetwork.Resources.PublicNews.NameEn" value="@Model.OPage.NameEn"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Link</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbLink" name="Link" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Link" data-field="@kindergartenNetwork.Resources.PublicNews.Link" value="@Model.OPage.Link"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Icon</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbIcon" name="Icon" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Icon" data-field="@kindergartenNetwork.Resources.PublicNews.Icon" value="@Model.OPage.Icon"/>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <div class="mt-checkbox-inline">
+                                <div class="formElement">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cbInMenu" name="InMenu" value="true" @(Model.OPage.InMenu.Value ? "checked" : "")> @kindergartenNetwork.Resources.PublicNews.InMenu
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="formElement">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cbIsActive" name="IsActive" value="true" @(Model.OPage.IsActive.Value ? "checked" : "")> @kindergartenNetwork.Resources.PublicNews.IsActive
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="formElement">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cbForAdmin" name="ForAdmin" value="true" @(Model.OPage.ForAdmin ? "checked" : "")> @kindergartenNetwork.Resources.PublicNews.ForAdmin
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="formElement">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cbNeedLogin" name="NeedLogin" value="true" @(Model.OPage.NeedLogin ? "checked" : "")> @kindergartenNetwork.Resources.PublicNews.NeedLogin
+                                        <span></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.PageType</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <select class="selectpicker form-control input-md input-medium" name="ParentId" data-field="@kindergartenNetwork.Resources.PublicNews.PageType" data-live-search="true"title="@kindergartenNetwork.Resources.PublicNews.Select">
+                                    <option value="0" @(Model.OPage.ParentId == 0 ? "selected" : "")>@kindergartenNetwork.Resources.PublicNews.Parent</option>
+                                    @foreach (var page in Model.LstParent)
+                                    {
+                                        <option value="@page.Id" @(Model.OPage.ParentId == page.Id ? "selected" : "")>@page.Name</option>
+                                    }
+                                </select>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Category</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <select class="selectpicker form-control input-md input-medium" name="TypeId" data-field="@kindergartenNetwork.Resources.PublicNews.Category"title="@kindergartenNetwork.Resources.PublicNews.Select">
+                                    @foreach (var category in Model.LstPageCategory)
+                                    {
+                                    <option value="@category.Id" @(Model.OPage.TypeId == category.Id ? "selected" : "")>@category.Name</option>
+                                    }
+                                </select>
+                                <span class="help-inline"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+}

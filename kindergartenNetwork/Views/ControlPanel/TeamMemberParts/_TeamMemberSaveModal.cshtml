@@ -1,0 +1,113 @@
+﻿@model kindergartenNetwork.Models.NewsModels.TeamMembersModel
+@using (Html.BeginForm("SaveTeamMember", "ControlPanel", FormMethod.Post, new { onsubmit = "return false;", id = "SaveTeamMemberForm", name = "SaveTeamMemberForm" }))
+{
+<div class="portlet light portlet-fit bg-inverse">
+    <div class="portlet-title">
+        <div class="caption">
+            @if (Model.OTeamMember.Id > 0)
+            {
+                <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.TeamMember </h4>
+                <input type="hidden" value="@Model.OTeamMember.Id" Name="Id" data-field="" />
+
+            }
+            else
+            {
+                <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Add @kindergartenNetwork.Resources.PublicNews.TeamMember </h4>
+
+            }
+        </div>
+        <div class="actions portelActionPadding">
+            <a href="javascript:;" class="btn btn-circle btn-default closeModal">
+                <i class="fa fa-undo"></i> @kindergartenNetwork.Resources.PublicNews.BackToMembersList
+            </a>
+        </div>
+    </div>
+        <div class="modal-body">
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+            </div>
+            <div class="alert alert-success display-hide">
+                <button class="close" data-close="alert"></button>
+            </div>
+            <div class="form-horizontal ">
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@Model.OTeamMember.Id" Name="Id" id="teamMemberId" data-field="" />
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.Name</label>
+                            <div class="col-md-8">
+                                <input type="text" id="tbName" name="Name" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" value="@Model.OTeamMember.Name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.JobTitle</label>
+                            <div class="col-md-8">
+                                <input type="text" id="tbJobTitle" name="JobTitle" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.JobTitle" value="@Model.OTeamMember.JobTitle" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">@kindergartenNetwork.Resources.PublicNews.LinkedInUrl</label>
+                            <div class="col-md-8">
+                                <input type="text" id="tbLinkedInUrl" name="LinkedInUrl" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.LinkedInUrl" value="@Model.OTeamMember.LinkedInUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" style="padding-right: 0">@kindergartenNetwork.Resources.PublicNews.FaceBookUrl</label>
+                            <div class="col-md-8">
+                                <input type="text" id="tbFaceBookUrl" name="FaceBookUrl" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.FaceBookUrl" value="@Model.OTeamMember.FaceBookUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" style="padding-right: 0">@kindergartenNetwork.Resources.PublicNews.InstgramUrl</label>
+                            <div class="col-md-8">
+                                <input type="text" id="tbInstgramUrl" name="InstgramUrl" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.InstgramUrl" value="@Model.OTeamMember.InstgramUrl" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-8">
+                                <div class="mt-checkbox-inline">
+                                    <div class="formElement">
+                                        <label class="mt-checkbox">
+                                            <input type="checkbox" id="cbIsWithUs" name="IsWithUs" value="true" @(Model.OTeamMember.IsWithUs ? "checked" : "") data-field="@kindergartenNetwork.Resources.PublicNews.IsWithUs"> @kindergartenNetwork.Resources.PublicNews.IsWithUs
+                                            <span></span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <input type="hidden" id="hdImage" name="Avatar" value="@Model.OTeamMember.Avatar" />
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                        <img src="/Content/UploadedFile/Account/Avatar/Thumbnail/@Model.OTeamMember.Avatar" onError="this.onerror=null;this.src='/Content/UploadedFile/Account/Avatar/NoImage.png';"/>
+                                    </div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                            <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                            <input id="hdAvatar" type="file" name="...">
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+            <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+        </div>
+    <!-- /.modal-content -->
+</div>
+}

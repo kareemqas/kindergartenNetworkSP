@@ -1,0 +1,74 @@
+﻿@model kindergartenNetwork.Models.NewsModels.PagesHdrModel
+@using (Html.BeginForm("UpdatePagesHdr", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "UpdatePagesHdr", name = "UpdatePagesHdr" }))
+{
+    <div class="portlet light portlet-fit bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject font-red-thunderbird bold uppercase"> @kindergartenNetwork.Resources.PublicNews.Page  </span>  <span dir="ltr">(1920 x 800)</span>
+            </div>
+        </div>
+        <div class="portle-body">
+
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal ">
+                    @Html.AntiForgeryToken()
+                    @foreach (var page in Model.LstPagesHdrs)
+                    {
+                        <input type="hidden" class="pagehdr" id="hdImage_@page.Id" SID="@page.Id" name="Image" value="@page.Image" />
+                        <div class="form-group">
+                            <label class="col-md-2 form-label"> @page.Name</label>
+                            <div class="col-md-8">
+                                <div class="formElement">
+                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput" id="attachmentDiv" data-fileName="">
+                                        <div class="form-control" data-trigger="fileinput">
+                                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                            <span class="fileinput-filename">@page.Image</span>
+                                        </div>
+                                        <span class="input-group-addon btn btn-default btn-file">
+                                            <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectDocument</span>
+                                            <span class="fileinput-exists">
+                                                @kindergartenNetwork.Resources.PublicNews.Change
+                                            </span>
+                                            <input type="file" Id="fileUpload_@page.Id" name="FileName" accept="image/*" placeholder="@kindergartenNetwork.Resources.PublicNews.Image">
+                                        </span>
+                                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn dark btn-outline closeModal">@kindergartenNetwork.Resources.PublicNews.Close</button>*@
+                <button type="submit" class="btn green btn-outline" id="btnAdd">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+    </div>
+}
+@section style{
+    <link href="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle !important;
+        }
+
+        .fileinput.input-group {
+            border-left: 1px solid #c0c0c0 !important;
+        }
+    </style>
+}
+@section scripts{
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initPagesHdr();
+}

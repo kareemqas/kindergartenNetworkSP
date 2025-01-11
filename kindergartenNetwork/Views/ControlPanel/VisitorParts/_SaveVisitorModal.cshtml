@@ -1,0 +1,111 @@
+﻿@model kindergartenNetwork.Models.NewsModels.InsertUpdateVisitorModel
+@using (Html.BeginForm("SaveVisitor", "ControlPanel", FormMethod.Post, new { onsubmit = "return false;", id = "SaveVisitorForm", name = "SaveVisitorForm" }))
+{
+<div class="modal-dialog">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title">@kindergartenNetwork.Resources.PublicNews.Add @kindergartenNetwork.Resources.PublicNews.User </h4>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+            </div>
+            <div class="alert alert-success display-hide">
+                <button class="close" data-close="alert"></button>
+            </div>
+            <div class="form-horizontal">
+                <input type="hidden" data-field="UserId" name="Id" Id="Id" value="@Model.OVisitor.Id" />
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Name</label>
+                    <div class="col-md-9">
+                        <div class="formElement">
+                            <input type="text" id="tbName" name="Name" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" data-field="@kindergartenNetwork.Resources.PublicNews.Name" value="@Model.OVisitor.Name" />
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Pass</label>
+                    <div class="col-md-9">
+                        <div class="formElement">
+                            <input type="password" id="tbPass" name="Pass" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Pass" data-field="@kindergartenNetwork.Resources.PublicNews.Pass" />
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.ConfirmPassword</label>
+                    <div class="col-md-9">
+                        <div class="formElement">
+                            <input type="password" id="tbConfirmPassword" name="ConfirmPassword" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.ConfirmPassword" data-field="@kindergartenNetwork.Resources.PublicNews.ConfirmPassword" />
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Email</label>
+                    <div class="col-md-9">
+                        <div class="formElement">
+                            <input type="Email" id="tbEmail" name="Email" class="form-control input-inline input-medium" placeholder="@kindergartenNetwork.Resources.PublicNews.Email" data-field="@kindergartenNetwork.Resources.PublicNews.Email" value="@Model.OVisitor.Email" />
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-9">
+                        <div class="mt-checkbox-inline">
+                            <div class="formElement">
+                                <label class="mt-checkbox">
+                                    <input type="checkbox" id="cbIsApproved" name="IsApproved" value="true" @(Model.OVisitor.IsApproved.Value ? "checked" : "") data-field="@kindergartenNetwork.Resources.PublicNews.IsApproved"> @kindergartenNetwork.Resources.PublicNews.IsApproved
+                                    <span></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="hdImage" name="Avatar" value="" />
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Avatar</label>
+
+                    <div class="col-md-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                <img id="img" src="@(Model.OVisitor.Id > 0 ? "../Content/UploadedFile/Account/Avatar/Thumbnail/" + Model.OVisitor.Avatar : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")" alt="" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+                            </div>
+                            <div>
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                    <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                    <input id="imgUploadUser" type="file" name="...">
+                                </span>
+                                <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+            <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+            <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+        </div>
+    </div>
+
+    <!-- /.modal-content -->
+</div>
+}

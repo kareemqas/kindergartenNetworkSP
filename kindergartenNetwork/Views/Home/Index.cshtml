@@ -1,0 +1,229 @@
+﻿@model kindergartenNetwork.Models.NewsModels.StaticPageModel
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.Home + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+}
+
+<!-- Start Banner Area -->
+<section class="banner-area f5f6fa-bg-color" style="background-image: url(../Content/UploadedFile/News/Original/@Model.OStaticPage.Image2);">
+    <div class="container-fluid social">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="banner-content">
+                    <h1 class="wow fadeInLeft" data-wow-delay="0.3s">
+                        @Model.OStaticPage.Title
+                    </h1>
+                    <p class="wow fadeInLeft" data-wow-delay="0.6s">
+                        @Html.Raw(Model.OStaticPage.Description)
+                    </p>
+
+                    <a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)" class="default-btn wow fadeInLeft" data-wow-delay="0.9s">
+                        تواصل معنا
+                    </a>
+                </div>
+            </div>
+            @if (Model.OStaticPage.IsImageView)
+            {
+                <div class="col-lg-6">
+                    <div class="banner-img wow fadeInRight" data-wow-delay="0.3s">
+                        <img src="/Content/UploadedFile/News/Original/@Model.OStaticPage.Image" width="600" alt="Image">
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Start Social Wrap -->
+        @if (Model.LstSocials != null && Model.LstSocials.Count > 0)
+        {
+            <ul class="social-wrap">
+                <li class="follow-us">
+                    لمتابعتنا عبر:
+                </li>
+                @foreach (var social in Model.LstSocials)
+                {
+                    <li>
+                        <a href="@social.Link" target="_blank">
+                            <i class="bx bxl-@social.Icon"></i>
+                        </a>
+                    </li>
+                }
+                @*<li>
+                        <a href="#" target="_blank">
+                            <i class="bx bxl-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="bx bxl-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="bx bxl-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
+                    </li>*@
+            </ul>
+        }
+        <!-- End Social Wrap -->
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start Achieve Area -->
+<section class="achieve-area f5f6fa-bg-color pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span>في أهدافنا</span>
+            <h2>من خلال مؤسستنا نهدف إلى</h2>
+        </div>
+
+        <div class="row">
+            @if (Model.LstOurGoals != null)
+            {
+                var i = 0;
+                foreach (var goal in Model.LstOurGoals)
+                {
+                    i++;
+                    var src = "/Content/defaultTheme/assets/img/achieve-shape/achieve-shape-" + i + ".png";
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-achieve">
+                            <div class="achieve-shape shape-@i">
+                                <img src="@src" alt="Image">
+                                <i class="@goal.Icon"></i>
+                            </div>
+
+                            <h3>@goal.Title</h3>
+                            <p>@goal.Data</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- End Achieve Area -->
+<!-- Start Counter Area -->
+@if (Model.LstStatistics != null && Model.LstStatistics.Count > 0)
+{
+    var i = 0;
+    <section class="counter-area ebeef5-bg-color pt-100 pb-70">
+        <div class="container">
+            <div class="row rs-carousel owl-carousel" data-loop="true" data-items="4" data-margin="20" data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false" data-nav="false" data-nav-speed="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="4" data-md-device-nav="false" data-md-device-dots="false">
+
+                @foreach (var num in Model.LstStatistics)
+                {
+                    i++;
+                    var src = "/Content/defaultTheme/assets/img/counter-shape/counter-shape-" + i + ".png";
+                    <div class="item">
+                        <div class="single-counter">
+                            <div class="counter-shape shape-@i">
+                                <img src="@src" style="width: 125px !important; margin: auto" alt="Image">
+                                <h2>
+                                    <span class="odometer" data-count="@num.Data" dir="ltr">00</span>
+                                    @if (!string.IsNullOrEmpty(num.Icon))
+                                    {
+                                        <span class="target">@num.Icon</span>
+                                    }
+                                </h2>
+                            </div>
+
+                            <p>@num.Title</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+<!-- End Counter Area -->
+<!-- Start Events Area -->
+<section class="event-area ptb-70">
+    <div class="container">
+        <div class="section-title">
+            <span>أخبار المؤسسة</span>
+            <h2>أحدث الأخبار والفعاليات</h2>
+        </div>
+
+        <div class="row">
+
+            @foreach (var news in Model.LstNews)
+            {
+                <div class="col-lg-6 col-sm-6">
+                    <div class="single-event">
+                        <a style="min-height: 160px;" href="@Url.Action("Details", "News", new {id = news.Id}, Request.Url.Scheme)">
+                            <img width="190" src="/Content/UploadedFile/News/Original/@news.Image" onerror="this.onerror = null; this.src = '/Content/UploadedFile/News/NoImage.png';" alt="Image">
+                        </a>
+
+                        <div class="event-content">
+                            <ul>
+                                <li>
+                                    <i class="bx bx-calendar"></i>
+                                    @news.PublishDate.ToString("MMM dd, yyyy")
+                                </li>
+                                <li>
+                                    <i class="bx bx-time"></i>
+                                    @news.PublishDate.ToString("ddd hh:mm t")
+
+                                </li>
+                            </ul>
+
+                            <a href="@Url.Action("Details", "News", new {id = news.Id}, Request.Url.Scheme)">
+                                <h3>
+                                    @news.Title
+                                </h3>
+                            </a>
+
+                            @*<span>
+                                    <i class="bx bxs-location-plus"></i>
+                                    Palestine, Gaza
+                                </span>*@
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- End Events Area -->
+<!--Start Subscribe Area-->
+<section class="subscribe-area ebeef5-bg-color ptb-100">
+    <div class="container">
+        <div class="subscribe-wrap">
+            <h2>إشترك معنا</h2>
+            <p>اشترك في النشرة الإخبارية لدينا وابقى على اطلاع</p>
+
+            @using (Html.BeginForm("SubscribeInNewsletter", "Home", FormMethod.Post, new { onsubmit = "return false;", id = "SubscribeInNewsletterForm", name = "SubscribeInNewsletterForm" }))
+            {
+                <div class="alert alert-danger" style="display: none">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success" style="display: none">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <input type="email" class="form-control" placeholder="عنوان بريدك الإكتروني" id="tbEmail" name="Email" required
+                       autocomplete="off">
+
+                <button class="default-btn" type="submit">
+                    إشترك الأن
+                </button>
+
+                <div id="validator-newsletter" class="form-result"></div>
+            }
+            <div class="subscribe-img">
+                <img src="/Content/defaultTheme/assets/img/subscribe-img.png" alt="Image">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Subscribe Area-->
+@section scripts{
+    <script src="~/Scripts/visitorLogin.js"></script>
+}
+@section OnReadyScripts
+{
+    Login.initSubscribe();
+}

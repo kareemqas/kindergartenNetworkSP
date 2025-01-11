@@ -1,0 +1,150 @@
+﻿@model kindergartenNetwork.Models.PublicNews.News
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.News + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+    var pageHdr = DAL.News.PagesHdr.GetPagesHdr(new DTO.News.PagesHdr { Id = 2 }).Results.First();
+}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area bg-24" style="background-image: url(../Content/UploadedFile/News/Original/@pageHdr.Image)">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>@kindergartenNetwork.Resources.PublicNews.Home</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        @kindergartenNetwork.Resources.PublicNews.Home
+                    </a>
+                </li>
+
+                <li class="active">@kindergartenNetwork.Resources.PublicNews.News</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Events Area -->
+<section class="event-area-style pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span>أخبار المؤسسة</span>
+            <h2>أحدث الأخبار والفعاليات</h2>
+        </div>
+
+        <div class="row">
+            @if (Model.LstNews != null && Model.LstNews.Count > 0)
+            {
+                foreach (var news in Model.LstNews)
+                {
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="single-event">
+                            <a style="min-height: 160px;" href="@Url.Action("Details", "News", new {id = news.Id}, Request.Url.Scheme)">
+                                <img width="190" src="/Content/UploadedFile/News/Original/@news.Image" onerror="this.onerror = null;this.src = '/Content/UploadedFile/News/NoImage.png';" alt="Image">
+                            </a>
+
+                            <div class="event-content">
+                                <ul>
+                                    <li>
+                                        <i class="bx bx-calendar"></i>
+                                        @news.PublishDate.ToString("MMM dd, yyyy")
+                                    </li>
+                                    <li>
+                                        <i class="bx bx-time"></i>
+                                        @news.PublishDate.ToString("ddd hh:mm t")
+
+                                    </li>
+                                </ul>
+
+                                <a href="@Url.Action("Details", "News", new {id = news.Id}, Request.Url.Scheme)">
+                                    <h3>
+                                        @news.Title
+                                    </h3>
+                                </a>
+
+                                @*<span>
+                            <i class="bx bxs-location-plus"></i>
+                            Palestine, Gaza
+                        </span>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="col-lg-12 col-md-12">
+                <div class="pagination-area">
+                    @{
+                        var totalPages = Convert.ToInt32(Math.Ceiling(Model.count / 6.0));
+                        var currentPage = Request.QueryString["page"] != null ? Convert.ToInt32(Request.QueryString["page"]) : 1;
+                        var startPage = currentPage - 5;
+                        var endPage = currentPage + 4;
+                        if (startPage <= 0)
+                        {
+                            endPage -= (startPage - 1);
+                            startPage = 1;
+                        }
+                        if (endPage > totalPages)
+                        {
+                            endPage = totalPages;
+                            if (endPage > 5)
+                            {
+                                startPage = endPage - 4;
+                            }
+                        }
+
+                        var TotalItems = Model.count;
+                        var CurrentPage = currentPage;
+                        var TotalPages = totalPages;
+                        var StartPage = startPage;
+                        var EndPage = endPage;
+
+                        if (EndPage > 1)
+                        {
+
+                            if (CurrentPage > 1)
+                            {
+                                @*<li><a href="@Url.Action("Index","News",new{ id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]):Url.RequestContext.RouteData.Values["id"],page=currentPage-1})"><i class="fa fa-angle-right"></i>@kindergartenNetwork.Resources.PublicNews.Previous</a></li>*@
+
+                                <a href="@Url.Action("Index", "News", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page = currentPage - 1})" class="next page-numbers">
+                                    <i class="bx bx-chevron-right"></i>
+                                </a>
+                            }
+                            for (var page = StartPage; page <= EndPage; page++)
+                            {
+                                if (page == CurrentPage)
+                                {
+                                    <span class="page-numbers current" aria-current="page">@page</span>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Index", "News", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page})" class="page-numbers">@page</a>
+                                }
+
+                                @*<li class="@(page == CurrentPage ? "active" : "")"><a href="@Url.Action("Index","News",new{ id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]):Url.RequestContext.RouteData.Values["id"],page=page})">@page</a></li>*@
+                            }
+                            if (currentPage < totalPages)
+                            {
+                                @*<li><a href="@Url.Action("Index","News",new{ id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]):Url.RequestContext.RouteData.Values["id"],page=currentPage+1})">@kindergartenNetwork.Resources.PublicNews.Next<i class="fa fa-angle-left"></i></a></li>*@
+                                <a href="@Url.Action("Index", "News", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page = currentPage + 1})" class="previous page-numbers">
+                                    <i class="bx bx-chevron-left"></i>
+                                </a>
+                            }
+
+                        }
+                    }
+                    @*<span class="page-numbers current" aria-current="page">1</span>
+        <a href="#" class="page-numbers">2</a>
+        <a href="#" class="page-numbers">3</a>
+        <a href="#" class="page-numbers">4</a>
+
+        <a href="#" class="next page-numbers">
+            <i class="bx bx-chevron-right"></i>
+        </a>*@
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+

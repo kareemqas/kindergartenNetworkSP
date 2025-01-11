@@ -1,0 +1,73 @@
+﻿
+<div class="contentDiv" id="SaveModal" style="display:none">
+
+</div>
+
+<div class="portlet light portlet-fit tableDiv">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-red-thunderbird"></i>
+            <span class="caption-subject font-red-thunderbird bold uppercase">@ViewBag.PageTitle</span>
+        </div>
+        @*<button type="button" class="btn btnx blue btn-outline btn-md pull-right btnSaveMember" data-id="0"><i class="fa fa-plus"></i></button>*@
+    </div>
+    <div class="portlet-body">
+        <form id="SearchForm" role="form">
+            <div class="row">
+
+                <div class="col-md-6  col-md-offset-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control" dir="rtl" id="txtSearch" placeholder="@kindergartenNetwork.Resources.PublicNews.Search..." style="width: 100%" />
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btnx green btn-outline btn-md" id="btnSearch"><i class="fa fa-search"></i></button>
+                    <button type="reset" class="btn btnx red btn-outline btn-md" id="btnClearForm"><i class="fa fa-undo"></i></button>
+                    <button type="button" class="btn btnx blue btn-outline btn-md btnSaveMember" data-id="0"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+
+
+        </form>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-advance table-hover" id="tblTeamMembers" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Avatar</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Name</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Job</th>
+                            <th scope="col"><i class="icon-settings"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section style{
+    @Styles.Render("~/DataTables/css")
+    @Styles.Render("~/DateTimePickers/css")
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+    @Scripts.Render("~/DateTimePickers/js")
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+    <script src="~/Content/assets/global/plugins/loadingoverlay/src/loadingoverlay.min.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initTeamMembers();
+}

@@ -1,0 +1,193 @@
+﻿@model kindergartenNetwork.Models.MainModels.UserPermissionModel
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-green"></i>
+            <span class="caption-subject font-green bold uppercase">@ViewContext.ViewData["PageTitle"]</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { onsubmit = "return false;", @class = "form-horizontal" }))
+        {
+            var count = 0;
+            <div class="form-body">
+                <div class="form-group">
+                    @Html.Label(kindergartenNetwork.Resources.PublicNews.SelectUserType, new { @class = "control-label  col-md-2" })
+                    <div class="col-md-2">
+                        <select class="form-control selectpicker" id="ddlUserType" title="@kindergartenNetwork.Resources.PublicNews.UserType">
+                            @{
+                                kindergartenNetwork.Models.CustomPrincipal madarUser = (kindergartenNetwork.Models.CustomPrincipal)ViewContext.ViewData["User"];
+                            }
+                            @foreach (var oUserType in Model.LstUserTypes)
+                            {
+                                if (madarUser.UserTypeId != 1 && oUserType.Id == 1)
+                                {
+
+                                    continue;
+                                }
+                                <option value="@oUserType.Id">@oUserType.Name </option>
+
+                            }
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @{ kindergartenNetwork.Models.CustomPrincipal oUser = (kindergartenNetwork.Models.CustomPrincipal)ViewContext.ViewData["User"]; }
+                    @if (oUser != null)
+                    {
+                        List<DTO.Account.Pages> mainPages = new List<DTO.Account.Pages>();
+                        if (oUser.UserTypeId == 1 || oUser.UserTypeId == 7)
+                        {
+                            if (Model.LstPages != null && Model.LstPages.Count > 0)
+                            {
+                                mainPages = Model.LstPages;
+                            }
+                        }
+                        else
+                        {
+                            mainPages = kindergartenNetwork.Helper.CommonHelpExtension.GetMenuPages(oUser.UserTypeId, false);
+                        }
+                        if (mainPages.Count > 0)
+                        {
+                            count = mainPages.Count;
+                        }
+
+                        <div class="panel-group accordion col-md-12">
+                            @foreach (var mp in mainPages.Where(p => p.ParentId == 0 && p.TypeId != 3))
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <label class="mt-checkbox" style="float: right !important; margin-top: 10px; margin-right: 10px;">
+                                                <input type="checkbox" child="#collapse_@mp.Id" class="cbMP cb_@mp.Id" id="cb_@mp.Id" value="@mp.Id" name="IsActive">
+                                                <span></span>
+                                            </label>
+                                            <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_@mp.Id">
+
+                                                <i class="@mp.Icon"></i> @mp.Name
+
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse_@mp.Id" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            @if (mainPages.Count(p => p.ParentId == mp.Id && p.TypeId == 3) > 0)
+                                            {
+                                                <div class="form-group col-md-4 mainList">
+                                                    <div class="col-md-1 padding-top-10" style="width: 100% !important">
+                                                        <label class="mt-checkbox">
+                                                            <input type="checkbox" id="cb_@mp.Id" class="cbML cb_@mp.Id" child="#cbML_@mp.Id" value="0" name="IsActive"> @mp
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-12" id="cbML_@mp.Id">
+                                                        <div class="portlet box green">
+                                                            <div class="portlet-title">
+                                                                <div class="caption">
+                                                                    Tools
+                                                                </div>
+                                                                <div class="tools">
+                                                                    <a href="javascript:;" class="expand">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="portlet-body" style="display: none;">
+                                                                @foreach (var btn in mainPages.Where(p => p.ParentId == mp.Id && p.TypeId == 3))
+                                                                {
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-2 padding-top-10" style="width: 100% !important">
+                                                                            <label class="mt-checkbox">
+                                                                                <input type="checkbox" id="cb_@btn.Id" class="cb_@btn.Id cbChiled" value="@btn.Id" name="IsActive"> @btn.Name
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            }
+                                            @RenderMenuItem(mainPages, mp)
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    }
+
+                    @helper RenderMenuItem(List<DTO.Account.Pages> menuList, DTO.Account.Pages mi)
+                    {
+
+                        foreach (var cp in menuList.Where(p => p.ParentId == mi.Id && p.TypeId != 3))
+                        {
+                            <div class="form-group col-md-4 mainList">
+                                <div class="col-md-1 padding-top-10" style="width: 100% !important">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="cb_@cp.Id" class="cbML cb_@cp.Id" child="#cbML_@cp.Id" value="@cp.Id" name="IsActive"> @cp.Name
+                                        <span></span>
+                                    </label>
+                                </div>
+                                @if (menuList.Count(p => p.ParentId == cp.Id && p.TypeId == 3) > 0)
+                                {
+
+                                    <div class="col-md-12" id="cbML_@cp.Id">
+                                        <div class="portlet box green">
+                                            <div class="portlet-title">
+                                                <div class="caption">
+                                                    Tools
+                                                </div>
+                                                <div class="tools">
+                                                    <a href="javascript:;" class="expand">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body" style="display: none;">
+                                                @foreach (var btn in menuList.Where(p => p.ParentId == cp.Id && p.TypeId == 3))
+                                                {
+                                                    <div class="form-group">
+                                                        <div class="col-md-2 padding-top-10" style="width: 100% !important">
+                                                            <label class="mt-checkbox">
+                                                                <input type="checkbox" id="cb_@btn.Id" class="cb_@btn.Id cbChiled" value="@btn.Id" name="IsActive">  @btn.Name
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                            @RenderMenuItem(menuList, cp)
+                        }
+                    }
+
+                </div>
+                @if (count > 0)
+                {
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <a class="btn green btnAdd pull-right" data-toggle="modal" id="btnSavePermission" role="button">
+                                <i class="fa fa-check"></i> @kindergartenNetwork.Resources.PublicNews.Save
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/ManagementScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ManagementScripts.initUserPermission()
+}

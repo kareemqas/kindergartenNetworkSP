@@ -1,0 +1,159 @@
+﻿@model kindergartenNetwork.Models.NewsModels.NewsModel
+@{
+    ViewBag.PageTitle = ViewBag.LangId == 1 ? Model.OCategory.NameAr : Model.OCategory.NameEn;
+}
+<div class="contentDiv" id="SaveModal" style="display:none">
+
+</div>
+
+<div class="portlet light portlet-fit tableDiv">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-red-thunderbird"></i>
+            <span class="caption-subject font-red-thunderbird bold uppercase">@kindergartenNetwork.Resources.PublicNews.Articles </span>
+        </div>
+        @*<div class="actions portelActionPadding">
+                <a href="javascript:;" class="btn btn-circle btn-default Add btnSaveNews" data-id="0">
+                    <i class="fa fa-plus"></i> إضافة خبر
+                </a>
+            </div>*@
+    </div>
+    <div class="portlet-body">
+        <form id="SearchForm" role="form">
+            <div class="row">
+
+                <div class="col-md-6  col-md-offset-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control" dir="rtl" id="txtNewsSearch" placeholder="@kindergartenNetwork.Resources.PublicNews.Search..." style="width:100%" />
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <select class="selectpicker form-control" id="ddlCategories">
+                            <option value="">@kindergartenNetwork.Resources.PublicNews.Category</option>
+                            @foreach (var obj in Model.LstCategory)
+                            {
+                                <option value="@obj.Id">@obj.NameAr</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+
+
+                <div class="col-md-2 col-md-offset-2">
+                    <input id="tbFromDate" name="tbFromDate" class="form-control date-picker" type="text" placeholder="@kindergartenNetwork.Resources.PublicNews.Date @kindergartenNetwork.Resources.PublicNews.From" data-field="@kindergartenNetwork.Resources.PublicNews.Date @kindergartenNetwork.Resources.PublicNews.From" data-date-format="dd-MM-yyyy" value="" />
+                </div>
+                <div class="col-md-2">
+                    <input id="tbToDate" name="tbToDate" class="form-control date-picker" type="text" placeholder="@kindergartenNetwork.Resources.PublicNews.To @kindergartenNetwork.Resources.PublicNews.Date" data-field="@kindergartenNetwork.Resources.PublicNews.To @kindergartenNetwork.Resources.PublicNews.Date" formatdata-date-format="dd-MM-yyyy" value="@DateTime.Now.Date.AddDays(1).ToString("dd-MM-yyyy")" />
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <select class="selectpicker form-control" id="ddlUsers">
+                            <option value="">@kindergartenNetwork.Resources.PublicNews.InsertedBy</option>
+                            @foreach (var obj in Model.LstUsers)
+                            {
+                                <option value="@obj.Id">@obj.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btnx green btn-outline btn-md" id="btnSearch"><i class="fa fa-search"></i></button>
+                    <button type="reset" class="btn btnx red btn-outline btn-md" id="btnClearForm"><i class="fa fa-undo"></i></button>
+                    <button type="button" class="btn btnx blue btn-outline btn-md btnSaveNews" data-id="0" data-categoryId="@Model.OCategory.Id"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+
+
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-advance table-hover" id="tblNews" data-categoryId="@Model.OCategory.Id" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Image</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Address</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Category</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.InsertedDate</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.User</th>
+                            <th scope="col"> @kindergartenNetwork.Resources.PublicNews.IsActive</th>
+                            @*<th scope="col"> @kindergartenNetwork.Resources.PublicNews.Status</th>*@
+                            @*<th scope="col"> @kindergartenNetwork.Resources.PublicNews.Language</th>*@
+                            <th scope="col"><i class="icon-settings"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- END Portlet PORTLET-->
+    </div>
+</div>
+
+
+
+@section style{
+    @Styles.Render("~/DateTimePickers/css")
+    @Styles.Render("~/DataTables/css")
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle !important;
+        }
+
+        .bootstrap-tagsinput .tag {
+            font-size: 11px !important
+        }
+
+        .bootstrap-tagsinput {
+            width: 100%
+        }
+
+        .tag label .label-info {
+            padding-top: 5px;
+            padding-bottom: 4px;
+        }
+
+        .note-popover .popover-content .note-color .dropdown-toggle, .panel-heading.note-toolbar .note-color .dropdown-toggle {
+            width: 30px !important;
+        }
+
+        .titlejustify {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+    </style>
+    <link href="~/Content/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render("~/DateTimePickers/js")
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-summernote/summernote.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-summernote/lang/summernote-ar-AR.js"></script>
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/loadingoverlay/src/loadingoverlay.min.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initArticles();
+
+}

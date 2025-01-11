@@ -1,0 +1,44 @@
+﻿
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-red-thunderbird"></i>
+            <span class="caption-subject font-red-thunderbird bold uppercase">@kindergartenNetwork.Resources.PublicNews.SystemSettinges</span>
+        </div>
+    </div>
+    <div class="portle-body">
+        <table class="table table-bordered table-advance table-hover" id="tblAppSettings" style="width: 100%">
+            <thead>
+                <tr>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Name</th>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Value</th>
+                    <th scope="col"><i class="icon-settings"></i></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@section style{
+    @Styles.Render("~/DataTables/css")
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet" />
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle !important;
+        }
+
+        .fileinput.input-group {
+            border-left: 1px solid #c0c0c0 !important;
+        }
+    </style>
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/DateTimePickers/js")
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Scripts/UnionScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    UnionScripts.initAppSettings();
+}

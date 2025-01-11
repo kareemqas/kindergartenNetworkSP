@@ -1,0 +1,88 @@
+﻿@model kindergartenNetwork.Models.NewsModels.EducationalResourceModel
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-red-thunderbird"></i>
+            <span class="caption-subject font-red-thunderbird bold uppercase">@kindergartenNetwork.Resources.PublicNews.EducationalResources</span>
+        </div>
+        @*<div class="actions portelActionPadding">
+                <a href="javascript:;" class="btn btn-circle btn-default btnSaveAttachment" data-id="0">
+                    <i class="fa fa-plus"></i> إضافة ملف
+                </a>
+            </div>*@
+    </div>
+    <div class="portle-body">
+        <form id="SearchForm" role="form">
+            <div class="row">
+                <div class="col-md-3  col-md-offset-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-md input-medium" dir="rtl" id="txtAttachmentSearch" placeholder="@kindergartenNetwork.Resources.PublicNews.Name.." />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="selectpicker form-control input-md input-medium" id="ddlType" data-live-search="true">
+                            <option value="">@kindergartenNetwork.Resources.PublicNews.Type</option>
+                            @foreach (var type in Model.LstFileTypes)
+                            {
+                                <option value="@type.Id">@type.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btnx green btn-outline btn-md" id="btnSearch"><i class="fa fa-search"></i></button>
+                    <button type="reset" class="btn btnx red btn-outline btn-md" id="btnClearForm"><i class="fa fa-undo"></i></button>
+                    <button type="button" class="btn btnx blue btn-outline btn-md btnSaveAttachment" data-id="0"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+
+
+        </form>
+        <table class="table table-bordered table-advance table-hover" id="tblAttachments" style="width: 100%">
+            <thead>
+                <tr>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Icon</th>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Address</th>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.FileType</th>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Description</th>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.InsertedDate</th>
+                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.InsertedBy</th>
+                    <th scope="col"><i class="icon-settings"></i></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+
+@section style{
+    @Styles.Render("~/DataTables/css")
+    @Styles.Render("~/DateTimePickers/css")
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle !important;
+        }
+
+        .fileinput.input-group {
+            border-left: 1px solid #c0c0c0 !important;
+        }
+    </style>
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+    @Scripts.Render("~/DateTimePickers/js")
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initAttachments();
+}

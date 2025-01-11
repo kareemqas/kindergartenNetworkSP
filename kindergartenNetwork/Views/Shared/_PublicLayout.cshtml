@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
+Version: 4.5.3
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html dir="rtl">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@kindergartenNetwork.Resources.PublicNews.ProjectName | @ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link href="~/fonts/Frutiger/css.css" rel="stylesheet" />
+            <!-- BEGIN GLOBAL MANDATORY STYLES -->
+            @Styles.Render("~/GlobalMandotaryRTL/css")
+            <!-- END GLOBAL MANDATORY STYLES -->
+            <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="~/Content/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+            <link href="~/Content/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+            <!-- END PAGE LEVEL PLUGINS -->
+            <!-- BEGIN THEME GLOBAL STYLES -->
+            @Styles.Render("~/GlobalstyleRTL/css")
+            <!-- END THEME GLOBAL STYLES -->
+            <!-- BEGIN PAGE LEVEL STYLES -->
+            <link href="~/Content/assets/pages/css/login-4-rtl.min.css" rel="stylesheet" type="text/css" />
+            <!-- END PAGE LEVEL STYLES -->
+    
+
+
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<!-- END HEAD -->
+<body class="login">
+    <!-- BEGIN LOGIN -->
+    <div class="content">
+        @RenderBody()
+    </div>
+    <div class="copyright" style="color:#fff;">جميع الحقوق محفوظة <bdi>©</bdi> @kindergartenNetwork.Resources.PublicNews.ProjectName . @DateTime.Now.Year</div>
+    <!--[if lt IE 9]>
+    <script src="../assets/global/plugins/respond.min.js"></script>
+    <script src="../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    @Scripts.Render("~/CorePlugins/js")
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    @Scripts.Render("~/GlobalScript/js")
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/Scripts/Login-4.js"></script>
+    <script src="~/Content/assets/global/plugins/backstretch/jquery.backstretch.min.js"></script>
+    <script src="~/Scripts/languages/Messages_ar.js"></script>
+    @RenderSection("scripts", false)
+    <script>
+        jQuery(document).ready(function () {
+            @RenderSection("OnRedayScripts", required: false)
+            //resetbooststrapSelect();
+        });
+    </script>
+
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <!-- END THEME LAYOUT SCRIPTS -->
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+﻿
+<div class="modal fade" id="UserTypeModel"  role="dialog" aria-hidden="true"></div>
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-red-thunderbird"></i>
+            <span class="caption-subject font-red-thunderbird bold uppercase">@ViewBag.PageTitle</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="form-inline" role="form">
+            <div class="row">
+                <div class="col-lg-7 col-lg-offset-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-md input-medium" id="txtUserTypeSearch" placeholder="@kindergartenNetwork.Resources.PublicNews.Name.."/>
+                    </div>
+                    <button class="btn btnx green btn-outline btn-md" id="btnSearch"><i class="fa fa-search"></i></button>
+                    <button class="btn btnx red btn-outline btn-md" id="btnClearForm"><i class="fa fa-undo"></i></button>
+                    <button class="btn btnx blue btn-outline btn-md" data-toggle="modal" id="btnAddUserType" ><i class="fa fa-plus"></i></button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <!-- BEGIN Portlet PORTLET-->
+                <div class="portlet">
+                    <div class="portlet-body">
+                        <table class="table table-bordered table-advance table-hover" id="tblUserType" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Name</th>
+                                    <th scope="col"><i class="fa fa-cog fa-fw"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END Portlet PORTLET-->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section style{
+    @Styles.Render("~/DataTables/css")
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet"/>
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/ManagementScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ManagementScripts.initUserTypes();
+}

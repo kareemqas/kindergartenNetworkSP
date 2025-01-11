@@ -1,0 +1,18 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "العربية",
+    "Code": "ar-kw",
+    "TowLetterCode": "ar",
+    "Dir": "rtl",
+    "TowLetterCountry": "kw"
+  },
+  {
+    "Id" :  2,
+    "Name": "English",
+    "Code": "en-us",
+    "TowLetterCode": "en",
+    "Dir": "ltr",
+    "TowLetterCountry": "us"
+  }
+]

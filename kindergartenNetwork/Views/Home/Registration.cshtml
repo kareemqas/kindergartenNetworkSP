@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.Register + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area bg-10">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>تسجيل جديد</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        الرئيسية
+                    </a>
+                </li>
+
+                <li class="active">تسجيل جديد</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Log In Area -->
+<section class="user-area-style ptb-100">
+    <div class="container">
+        <div class="registration-area">
+            <div class="section-title">
+                <h2>تسجيل جديد</h2>
+            </div>
+
+            <div class="contact-form-action">
+                @using (Html.BeginForm("RegistrationFn", "Home", FormMethod.Post, new { onsubmit = "return false;", id = "RegistrationForm", name = "RegistrationForm" }))
+                {
+                    <div class="row">
+                        <div class="alert alert-danger" style="display: none">
+                            <button class="close" data-close="alert"></button>
+                            <span>@kindergartenNetwork.Resources.PublicNews.EnterAnyUsernameAndPassword</span>
+                        </div>
+                        <div class="alert alert-success" style="display: none">
+                            <button class="close" data-close="alert"></button>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>الإسم كامل</label>
+                                <input class="form-control" type="text" name="Name">
+                            </div>
+                        </div>
+
+                        @*<div class="col-12">
+                                <div class="form-group">
+                                    <label>نوع الجهة</label>
+                                    <select class="form-control">
+                                        <option value="">إختر نوع التصنيف</option>
+                                        <option value="">روضات</option>
+                                        <option value="">جهات مانحة</option>
+                                        <option value="">أفراد</option>
+                                    </select>
+                                </div>
+                            </div>*@
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>البريد الإلكتروني</label>
+                                <input class="form-control" type="email" name="Email">
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>كلمة المرور</label>
+                                <input class="form-control" type="text" name="Pass">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <button class="default-btn register" type="submit">
+                                        تسجيل
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <p>هل لديك حساب؟ <a href="@Url.Action("Login","Home",null,Request.Url.Scheme)">تسجيل دخول</a></p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Log In Area -->
+<!-- End Log In Area -->
+@section scripts{
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/visitorLogin.js"></script>
+}
+    @section OnReadyScripts
+{
+        Login.init();
+    }

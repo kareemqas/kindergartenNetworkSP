@@ -1,0 +1,128 @@
+﻿@{
+
+    var oUser = (kindergartenNetwork.Models.CustomPrincipal)ViewContext.ViewData["User"];
+
+}
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title> @ViewContext.ViewData["PageTitle"] | @kindergartenNetwork.Resources.PublicNews.ProjectName</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="#1 selling multi-purpose bootstrap admin theme sold in themeforest marketplace packed with angularjs, material design, rtl support with over thausands of templates and ui elements and plugins to power any type of web applications including saas and admin dashboards. Preview page ofRTL  Theme #2 for statistics, charts, recent events and reports"
+          name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @Styles.Render("~/GlobalMandotaryRTL/css")
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @RenderSection("style", false)
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    @Styles.Render("~/GlobalstyleRTL/css")
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    @Styles.Render("~/ThemLayoutRTL/css")
+    <link href="~/fonts/FlaFont/font.css" rel="stylesheet" />
+    <!-- END THEME LAYOUT STYLES -->
+    @*<link rel="shortcut icon" href="../../favicon.ico" />*@
+    <link rel="shortcut icon" href="~/Content/defaultTheme/assets/img/logo2.png" />
+</head>
+<!-- END HEAD -->
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-sidebar-fixed page-footer-fixed">
+    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" data-backdrop="static"></div>
+    <div class="modal fade" id="basicModal2" tabindex="-1" aria-hidden="true" data-backdrop="static"></div>
+    <div class="modal fade" id="basicModal3" tabindex="-1" aria-hidden="true" data-backdrop="static"></div>
+    <div class="modal fade" id="basicModal4" tabindex="-1" aria-hidden="true" data-backdrop="static"></div>
+    <div class="modal fade" id="shortcutsModel" tabindex="-1" aria-hidden="true" data-backdrop="static" role="dialog">
+        
+    </div>
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        @Html.Partial("LayoutParts/_HeaderTop", oUser)
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        @Html.Partial("LayoutParts/_Sidebar", oUser)
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+            <div class="page-bar">
+                @Html.Partial("LayoutParts/_BreadCrumbs", oUser)
+            </div>
+            <!-- END PAGE HEADER-->
+
+                @RenderBody()
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        @Html.Partial("LayoutParts/_Prefooter", oUser)
+        <!-- END FOOTER -->
+        <!--[if lt IE 9]>
+    <script src="~/Content/assets/global/plugins/respond.min.js"></script>
+    <script src="~/Content/assets/global/plugins/excanvas.min.js"></script>
+    <script src="~/Content/assets/global/plugins/ie8.fix.min.js"></script>
+    <![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        @Scripts.Render("~/CorePlugins/js")
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        @Scripts.Render("~/GlobalScript/js")
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        @RenderSection("scripts", false)
+
+        @RenderSection("scripts1", false)
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        @Scripts.Render("~/ThemeLayoutScripts/js")
+        <script src="~/Scripts/ManagementScripts.js"></script>
+        <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+        <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+        <script src="~/Content/assets/global/plugins/jquery-validation/js/localization/messages_ar.js"></script>
+        <script src="~/Scripts/languages/Messages_ar.js"></script>
+        <script src="~/Content/assets/global/plugins/jquery.hotkeys/jquery.hotkeys.js"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+        <script>
+            $('.active .open').parents('.sub-menu').closest('li').addClass('active open');
+            jQuery(document).ready(function () {
+                menuSearch();
+                getViewContactUsModal();
+                getViewCommentModal();
+                @RenderSection("OnReadyScripts", required: false)
+            });
+            ManagementScripts.initMyProfile();
+            $.each($('.reporting'),
+                function (index,div) {
+                    if ($("li a[href='" + $(div).attr("p") + "']").length) {
+                        if (!$(div).hasClass("tab-pane"))
+                            $(div).show();
+                    } else {
+                        $(div).remove();
+                    }
+                });
+            hk_shortcuts();
+            hk_esc();
+            hk_dt_pageination(".dataTables_paginate ul li.paginate_button.first", ".dataTables_paginate ul li.paginate_button.previous", ".dataTables_paginate ul li.paginate_button.next", ".dataTables_paginate ul li.paginate_button.last");
+        </script>
+    </div>
+</body>
+</html>

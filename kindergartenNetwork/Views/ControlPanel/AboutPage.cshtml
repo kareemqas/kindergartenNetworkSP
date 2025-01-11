@@ -1,0 +1,147 @@
+﻿@model kindergartenNetwork.Models.NewsModels.StaticPageModel
+@{
+    ViewBag.PageTitle = ViewBag.LangId == 1 ? Model.OStaticPage.PageName : Model.OStaticPage.PageName;
+}
+@using (Html.BeginForm("SaveStaticPage", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "SaveStaticPageForm", name = "SaveStaticPageForm" }))
+{
+    <div class="portlet light portlet-fit bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+
+                <span class="caption-subject font-red-thunderbird bold uppercase"> @kindergartenNetwork.Resources.PublicNews.Edit - @Model.OStaticPage.PageName</span>
+                <input type="hidden" value="@Model.OStaticPage.Id" Name="Id" data-field="" />
+            </div>
+
+        </div>
+        <div class="portle-body">
+
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                    <div class="form-horizontal ">
+
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="hdImage" name="Image" value="@Model.OStaticPage.Image"/>
+                        <input type="hidden" id="hdImage2" name="Image2" value="@Model.OStaticPage.Image"/>
+                        <input type="hidden" id="hdImage3" name="Image3" value="@Model.OStaticPage.Image"/>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">العنوان</label>
+                            <div class="col-md-10">
+                                <div class="formElement">
+                                    <input type="text" id="tbTitle" value="@Model.OStaticPage.Title" name="Title" class="form-control" placeholder="العنوان" data-field="العنوان" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Image 1 <span dir="ltr">(355 x 210)</span></label>
+                            <div class="col-md-10">
+                                <div class="fileinput fileinput-new" data-provides="fileinput" style="width: 100%">
+                                    <div class="fileinput-new thumbnail" style="width: 100%;">
+                                        <img id="img" src="@(Model.OStaticPage.Id > 0 ? "/Content/UploadedFile/News/Original/" + Model.OStaticPage.Image : "http://www.placehold.it/600x250/EFEFEF/AAAAAA&amp;text=no+image")" alt=""/>
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; max-height: 250px;">
+
+                                    </div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                            <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                            <input id="imgUploadUser" type="file" name="Image">
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Image 2 <span dir="ltr">(265 x 200)</span></label>
+                            <div class="col-md-10">
+                                <div class="fileinput fileinput-new" data-provides="fileinput" style="width: 100%">
+                                    <div class="fileinput-new thumbnail" style="width: 100%;">
+                                        <img id="img2" src="@(Model.OStaticPage.Id > 0 ? "/Content/UploadedFile/News/Original/" + Model.OStaticPage.Image2 : "http://www.placehold.it/600x250/EFEFEF/AAAAAA&amp;text=no+image")" alt=""/>
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; max-height: 250px;">
+
+                                    </div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                            <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                            <input id="imgUploadUser2" type="file" name="Image2">
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Image 3 <span dir="ltr">(390 x 290)</span></label>
+                            <div class="col-md-10">
+                                <div class="fileinput fileinput-new" data-provides="fileinput" style="width: 100%">
+                                    <div class="fileinput-new thumbnail" style="width: 100%;">
+                                        <img id="img3" src="@(Model.OStaticPage.Id > 0 ? "/Content/UploadedFile/News/Original/" + Model.OStaticPage.Image3 : "http://www.placehold.it/600x250/EFEFEF/AAAAAA&amp;text=no+image")" alt=""/>
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; max-height: 250px;">
+
+                                    </div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                            <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                            <input id="imgUploadUser3" type="file" name="image3">
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Description</label>
+                            <div class="col-md-10">
+                                <div class="formElement">
+                                    <textarea id="tbDescription" rows="10" name="Description" class="form-control tbSummerNote" placeholder="@kindergartenNetwork.Resources.PublicNews.Description" data-field="@kindergartenNetwork.Resources.PublicNews.Description">@Model.OStaticPage.Description</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+    </div>
+}
+@section style{
+    @Styles.Render("~/DataTables/css")
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle !important;
+        }
+    </style>
+    <link href="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+
+    <script src="~/Content/assets/global/plugins/bootstrap-summernote/summernote.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-summernote/lang/summernote-ar-AR.js"></script>
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/loadingoverlay/src/loadingoverlay.min.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initStaticPages();
+}

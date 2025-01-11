@@ -1,0 +1,132 @@
+﻿@model kindergartenNetwork.Models.PublicNews.Media
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.ImagesGallary + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+    var pageHdr = DAL.News.PagesHdr.GetPagesHdr(new DTO.News.PagesHdr { Id = 8 }).Results.First();
+}
+
+<!-- Start Page Title Area -->
+<div class="page-title-area bg-6" style="background-image: url(../Content/UploadedFile/News/Original/@pageHdr.Image)">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>معرض الصور</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        الرئيسية
+                    </a>
+                </li>
+
+                <li class="active">معرض الصور</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+<!-- Start Gallery Area -->
+<div class="gallery-area gallery-popup ptb-100">
+    <div class="container">
+
+        @if (Model.LstMedia != null && Model.LstMedia.Count > 0)
+        {
+            <div class="showing-result">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-4">
+                        <div class="showing-result-count">
+                            <p>عرض <span>1</span>-<span id="counter">9</span> من <span id="total">@Model.Count</span> نتيجة</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="galleryDiv">
+                @foreach (var media in Model.LstMedia)
+                {
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single-gallery">
+                            <a href="/Content/UploadedFile/Albums/Original/@media.FilePath">
+                                <img width="570" style="min-height: 400px;height: 400px; overflow: hidden" onerror="this.onerror = null;this.src='/Content/UploadedFile/Albums/NoImage.png';" src="~/Content/UploadedFile/ALbums/Thumbnail/@media.FilePath" alt="@media.Caption">
+                                <i class='bx bx-show-alt'>
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                }
+                
+                </div>
+
+            <div class="col-12 text-center mt-3">
+                @if (Model.Count > 9)
+                {
+                    <button type="button" class="default-btn" id="btnGetMore" data-page="1">تحميل المزيد</button>
+                }
+            </div>
+        }
+    </div>
+</div>
+<!-- End Gallery Area -->
+<!-- Start Subscribe Area -->
+<section class="subscribe-area ebeef5-bg-color ptb-100">
+    <div class="container">
+        <div class="subscribe-wrap">
+            <h2>إشترك معنا</h2>
+            <p>اشترك في النشرة الإخبارية لدينا وابقى على اطلاع</p>
+
+            <form class="newsletter-form" data-toggle="validator">
+                <input type="email" class="form-control" placeholder="عنوان بريدك الإكتروني" name="EMAIL" required
+                       autocomplete="off">
+
+                <button class="default-btn" type="submit">
+                    إشترك الأن
+                </button>
+
+                <div id="validator-newsletter" class="form-result"></div>
+            </form>
+            <div class="subscribe-img">
+                <img src="/Content/defaultTheme/assets/img/subscribe-img.png" alt="Image">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Subscribe Area -->
+@section OnReadyScripts
+{
+     $("#btnGetMore").off("click").click(function () {
+         var page = parseInt($(this).attr("data-page")) + 1;
+         var counter = parseInt($("#counter").text());
+         $.ajax({
+             type: "GET",
+             cache: false,
+             url: "/Media/GetMoreMedia?page=" + page + "&type=11",
+             dataType: "JSON",
+             success: function(data) {
+                 if (data.cStatus === "success") {
+                     var html = "";
+                     var noImage = '';
+                     $.each(data.result, function(index, item) {
+                         html += '' +
+                             '<div class="col-lg-4 col-sm-6">'+
+                             '<div class="single-gallery">' +
+                             '<a href="/Content/UploadedFile/Albums/Original/' + item.FilePath + '">' +
+                             '<img width="570" style="min-height: 400px; height: 400px; overflow: hidden" onerror="this.onerror = null;this.src=\'/Content/UploadedFile/Albums/NoImage.png\';" src="~/Content/UploadedFile/ALbums/Thumbnail/' + item.FilePath+ '" alt="' + item.Caption + '">' +
+                             '<i class="bx bx-show - alt">' +
+                             '</i>' +
+                             '</a>' +
+                             '</div>' +
+                             '</div>' +
+                             ' ';
+                     });
+                     var total = parseInt($("#total").text());
+                     var currentTotal = counter + data.result.length;
+                     $("#counter").text(counter + data.result.length);
+                     $("#btnGetMore").attr("data-page",page);
+                     $("#galleryDiv").append(html);
+                     if(currentTotal == total){$("#btnGetMore").remove(); }
+                 }
+             },
+             error: function(xhr, ajaxOptions, thrownError) {
+             }
+         });
+     });
+    }

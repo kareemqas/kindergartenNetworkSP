@@ -1,0 +1,138 @@
+﻿@model kindergartenNetwork.Models.NewsModels.NewsModel
+@using (Html.BeginForm("SaveNews", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "SaveNews", name = "SaveNews" }))
+{
+    <div class="portlet light portlet-fit bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+                @if (Model.ONews.Id > 0)
+                {
+                <span class="caption-subject font-red-thunderbird bold uppercase">@kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.SingelNews </span>
+                   
+                }
+                else
+                {
+                <span class="caption-subject font-red-thunderbird bold uppercase"> @kindergartenNetwork.Resources.PublicNews.Add @kindergartenNetwork.Resources.PublicNews.SingelNews </span>
+
+                }
+            </div>
+            <div class="actions portelActionPadding">
+                <a href="javascript:;" class="btn btn-circle btn-default closeModal">
+                    <i class="fa fa-undo"></i> @kindergartenNetwork.Resources.PublicNews.BackToNewsList
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal ">
+
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" value="@Model.ONews.Id" Name="Id" id="newsId" data-field="" />
+                    <div class="form-group">
+                        <label class="col-md-1 control-label"></label>
+                        <div class="col-md-2">
+                            <div class="mt-checkbox-inline">
+                                <label class="mt-checkbox">
+                                    <input type="checkbox" id="cbIsActive" name="IsActive" value="true" @(Model.ONews.IsActive == true ? "checked" : "")>@kindergartenNetwork.Resources.PublicNews.IsActive
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.PublishDate</label>
+                        <div class="col-md-2">
+                            <div class="formElement">
+                                <input type="text" id="tbPublishDate" autocomplete="off" value="@(Model.ONews.PublishDate != DateTime.MinValue ? Model.ONews.PublishDate.ToString("yyyy-MM-dd hh:mm") : DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm"))" name="PublishDate" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.PublishDate" data-field="@kindergartenNetwork.Resources.PublicNews.PublishDate" />
+                            </div>
+                        </div>
+                        @if (ViewBag.CategoryId == 1)
+                        {
+                            <input type="hidden" value="@ViewBag.CategoryId" name="CategoryId" id="hdCategoryId" />
+                        }
+                        else
+                        {
+                            <label class="col-md-2 control-label">@kindergartenNetwork.Resources.PublicNews.Category</label>
+                            <div class="col-md-2">
+                                <div class="formElement">
+                                    <select class="selectpicker form-control" name="CategoryId" id="ddlCategories">
+                                        <option value="">@kindergartenNetwork.Resources.PublicNews.Category</option>
+                                        @foreach (var obj in Model.LstCategory)
+                                        {
+                                            <option value="@obj.Id" @(Model.ONews.CategoryId == obj.Id ? "selected" : "")>@obj.NameAr</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">@kindergartenNetwork.Resources.PublicNews.Address</label>
+                        <div class="col-md-11">
+                            <div class="formElement">
+                                <input type="text" id="tbNewTitle" value="@Model.ONews.Title" name="Title" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.Address" data-field="@kindergartenNetwork.Resources.PublicNews.Address" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">@kindergartenNetwork.Resources.PublicNews.Summary</label>
+                        <div class="col-md-11">
+                            <div class="formElement">
+                                <textarea id="tbSummary" name="Summary" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.Summary" data-field="@kindergartenNetwork.Resources.PublicNews.Summary">@Model.ONews.Summary</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="hdImage" name="Image" value="@Model.ONews.Image" />
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">@kindergartenNetwork.Resources.PublicNews.Image <span dir="ltr">(810 x 500)</span></label>
+                        <div class="col-md-11">
+                            <div class="fileinput fileinput-new" data-provides="fileinput" style="width:100%">
+                                <div class="fileinput-new thumbnail" style="width: 100%;">
+                                    <img id="img" src="@(Model.ONews.Id > 0 ? "/Content/UploadedFile/News/Large/" + Model.ONews.Image : "http://www.placehold.it/600x250/EFEFEF/AAAAAA&amp;text=no+image")" alt="" />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; max-height: 250px;">
+
+                                </div>
+                                <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileinput-new">@kindergartenNetwork.Resources.PublicNews.SelectImage</span>
+                                        <span class="fileinput-exists">@kindergartenNetwork.Resources.PublicNews.Change</span>
+                                        <input id="imgUploadUser" type="file" name="Image">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists uploderRemoveImg" data-dismiss="fileinput">@kindergartenNetwork.Resources.PublicNews.Remove</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">@kindergartenNetwork.Resources.PublicNews.Details</label>
+                        <div class="col-md-11">
+                            <div class="formElement">
+                                <textarea id="tbDetails" rows="10" name="Details" class="form-control tbSummerNote" placeholder="@kindergartenNetwork.Resources.PublicNews.Details" data-field="@kindergartenNetwork.Resources.PublicNews.Details">@Model.ONews.Details</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">@kindergartenNetwork.Resources.PublicNews.Tags</label>
+                        <div class="col-md-11">
+                            <div class="formElement">
+                                <input type="text" id="tbNewsKeyWords" data-role="tagsinput" value="@Model.ONews.Keywords" name="" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.Tags" data-field="@kindergartenNetwork.Resources.PublicNews.Tags" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline closeModal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,1246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Achievement" xml:space="preserve">
+    <value>Achievement</value>
+  </data>
+  <data name="Achievements" xml:space="preserve">
+    <value>Achievements</value>
+  </data>
+  <data name="ActivitiesTournaments" xml:space="preserve">
+    <value>Activities and tournaments</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddressAr" xml:space="preserve">
+    <value>Address Arabic</value>
+  </data>
+  <data name="AddressEn" xml:space="preserve">
+    <value>Address English</value>
+  </data>
+  <data name="Administrative" xml:space="preserve">
+    <value>Administrative</value>
+  </data>
+  <data name="AdsArea" xml:space="preserve">
+    <value>Ads area</value>
+  </data>
+  <data name="Advertisement" xml:space="preserve">
+    <value>Advertisement</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="AgeCategories" xml:space="preserve">
+    <value>Age Categories</value>
+  </data>
+  <data name="AgeCategory" xml:space="preserve">
+    <value>Age Category</value>
+  </data>
+  <data name="Agenda" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
+  <data name="Album" xml:space="preserve">
+    <value>Album</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
+  <data name="AnimatedImagesLine" xml:space="preserve">
+    <value>Animated Images Line</value>
+  </data>
+  <data name="ApproveComment" xml:space="preserve">
+    <value>Approve Comment</value>
+  </data>
+  <data name="ApprovedPlayers" xml:space="preserve">
+    <value>Approved Players</value>
+  </data>
+  <data name="ApproveSelected" xml:space="preserve">
+    <value>Approve Selected</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
+  <data name="Article" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>Articles</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="AvailableSeat" xml:space="preserve">
+    <value>Available Seat</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="AwardsTitles" xml:space="preserve">
+    <value>Awards And Titles</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BackgroundImage" xml:space="preserve">
+    <value>Background Image</value>
+  </data>
+  <data name="BackToClubsList" xml:space="preserve">
+    <value>Back To Clubs List</value>
+  </data>
+  <data name="BackToMembersList" xml:space="preserve">
+    <value>Back To Members List</value>
+  </data>
+  <data name="BackToMenu" xml:space="preserve">
+    <value>Back To Menu</value>
+  </data>
+  <data name="BackToNewsList" xml:space="preserve">
+    <value>Back To News List</value>
+  </data>
+  <data name="BaseInfo" xml:space="preserve">
+    <value>Base Info</value>
+  </data>
+  <data name="BestScoreFor" xml:space="preserve">
+    <value>Best Score for</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="BirthPlace" xml:space="preserve">
+    <value>Birth Place</value>
+  </data>
+  <data name="BloodType" xml:space="preserve">
+    <value>Blood Type</value>
+  </data>
+  <data name="BoardDirectors" xml:space="preserve">
+    <value>Board of Directors</value>
+  </data>
+  <data name="BoardOfDirectors" xml:space="preserve">
+    <value>Board Of Directors</value>
+  </data>
+  <data name="Bracket" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="BracketAr" xml:space="preserve">
+    <value>Category Arabic</value>
+  </data>
+  <data name="BracketEn" xml:space="preserve">
+    <value>Category English</value>
+  </data>
+  <data name="Brackets" xml:space="preserve">
+    <value>Brackets</value>
+  </data>
+  <data name="Breaking" xml:space="preserve">
+    <value>Breaking</value>
+  </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="BrowserInfo" xml:space="preserve">
+    <value>Browser Info</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ChampionshipName" xml:space="preserve">
+    <value>Championship</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Club" xml:space="preserve">
+    <value>Club</value>
+  </data>
+  <data name="ClubFiles" xml:space="preserve">
+    <value>Club Files</value>
+  </data>
+  <data name="ClubImages" xml:space="preserve">
+    <value>Club Images</value>
+  </data>
+  <data name="Clubs" xml:space="preserve">
+    <value>Clubs</value>
+  </data>
+  <data name="ClubsApprove" xml:space="preserve">
+    <value>Clubs Approve</value>
+  </data>
+  <data name="ClubsReject" xml:space="preserve">
+    <value>Clubs Reject</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CommentOnArticle" xml:space="preserve">
+    <value>Comment On Article</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="CompetentAuthority" xml:space="preserve">
+    <value>Competent Authority</value>
+  </data>
+  <data name="Competition" xml:space="preserve">
+    <value>Competition</value>
+  </data>
+  <data name="CompetitionDate" xml:space="preserve">
+    <value>Competition Date</value>
+  </data>
+  <data name="Competitions" xml:space="preserve">
+    <value>Competitions</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Constant" xml:space="preserve">
+    <value>Constant</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>Contact Info</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CountryCity" xml:space="preserve">
+    <value>Country/City</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="CourseLevel" xml:space="preserve">
+    <value>Course Level</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="CtrlForMultiSelect" xml:space="preserve">
+    <value>Press ctrl for multi select</value>
+  </data>
+  <data name="CurrentClub" xml:space="preserve">
+    <value>Current Club</value>
+  </data>
+  <data name="CurrentPass" xml:space="preserve">
+    <value>Current Pass</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DataSummaryOfPlayer" xml:space="preserve">
+    <value>Data Summary Of Player</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date(From-To)</value>
+  </data>
+  <data name="DecisionDate" xml:space="preserve">
+    <value>Decision Date</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionAr" xml:space="preserve">
+    <value>Description Arabic</value>
+  </data>
+  <data name="DescriptionEn" xml:space="preserve">
+    <value>Description English</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DOB" xml:space="preserve">
+    <value>DOB</value>
+  </data>
+  <data name="Doctor" xml:space="preserve">
+    <value>Doctor</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EducationalResources" xml:space="preserve">
+    <value>Educational Resources</value>
+  </data>
+  <data name="EffectiveDate" xml:space="preserve">
+    <value>Effective Date</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnrollmentDate" xml:space="preserve">
+    <value>Enrollment Date</value>
+  </data>
+  <data name="EnterAnyUsernameAndPassword" xml:space="preserve">
+    <value>Enter Any Username And Password</value>
+  </data>
+  <data name="EnterYourEmailAddressBelowToResetYourPassword" xml:space="preserve">
+    <value>Enter Your Email Address Below To Reset Your Password</value>
+  </data>
+  <data name="ErorrMsg" xml:space="preserve">
+    <value>Erorr Msg</value>
+  </data>
+  <data name="ErrorInField" xml:space="preserve">
+    <value>Error In Field</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="Experiences" xml:space="preserve">
+    <value>Experiences</value>
+  </data>
+  <data name="External" xml:space="preserve">
+    <value>External</value>
+  </data>
+  <data name="ExternalActivities" xml:space="preserve">
+    <value>External Activities</value>
+  </data>
+  <data name="ExternalAwardTitle" xml:space="preserve">
+    <value>External Award \Title</value>
+  </data>
+  <data name="ExternalCamps" xml:space="preserve">
+    <value>External Camps</value>
+  </data>
+  <data name="ExternalCourse" xml:space="preserve">
+    <value>External Course</value>
+  </data>
+  <data name="ExternalCourses" xml:space="preserve">
+    <value>External Courses</value>
+  </data>
+  <data name="ExternalPlayerAchievement" xml:space="preserve">
+    <value>External Player Achievement</value>
+  </data>
+  <data name="ExternalTournament" xml:space="preserve">
+    <value>External Tournament</value>
+  </data>
+  <data name="FaceBookUrl" xml:space="preserve">
+    <value>FaceBook url</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="Federation" xml:space="preserve">
+    <value>Federation</value>
+  </data>
+  <data name="FederationCommittees" xml:space="preserve">
+    <value>Federation Committees</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FileType" xml:space="preserve">
+    <value>FileType</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="FollowUs" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="ForAdmin" xml:space="preserve">
+    <value>For Admin</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Forgot Your Password ?</value>
+  </data>
+  <data name="FoundedDate" xml:space="preserve">
+    <value>Founded Date</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HoursAgo" xml:space="preserve">
+    <value>Hours Ago</value>
+  </data>
+  <data name="HoursNum" xml:space="preserve">
+    <value>Hours Number</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>Identity Card</value>
+  </data>
+  <data name="IDNumber" xml:space="preserve">
+    <value>ID Number</value>
+  </data>
+  <data name="IDType" xml:space="preserve">
+    <value>ID Type</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="ImagesGallary" xml:space="preserve">
+    <value>Images Gallary</value>
+  </data>
+  <data name="ImportantLink" xml:space="preserve">
+    <value>Important Link</value>
+  </data>
+  <data name="ImportantLinks" xml:space="preserve">
+    <value>ImportantLinks</value>
+  </data>
+  <data name="InMainCategories" xml:space="preserve">
+    <value>In Main Categories</value>
+  </data>
+  <data name="InMainPage" xml:space="preserve">
+    <value>Show In Main Page</value>
+  </data>
+  <data name="InMenu" xml:space="preserve">
+    <value>In Menu</value>
+  </data>
+  <data name="InsertedBy" xml:space="preserve">
+    <value>Inserted By</value>
+  </data>
+  <data name="InsertedDate" xml:space="preserve">
+    <value>InsertedDate</value>
+  </data>
+  <data name="InstgramUrl" xml:space="preserve">
+    <value>Instgram url</value>
+  </data>
+  <data name="Instructors" xml:space="preserve">
+    <value>Instructors</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
+  <data name="IsAgenda" xml:space="preserve">
+    <value>Agenda ?</value>
+  </data>
+  <data name="IsAnswered" xml:space="preserve">
+    <value>Is Answered ? </value>
+  </data>
+  <data name="IsApproved" xml:space="preserve">
+    <value>Is Approved ?</value>
+  </data>
+  <data name="IsFixed" xml:space="preserve">
+    <value>Is Fixed</value>
+  </data>
+  <data name="IsSeen" xml:space="preserve">
+    <value>Is Seen ?</value>
+  </data>
+  <data name="IsSigned" xml:space="preserve">
+    <value>Is Signed ?</value>
+  </data>
+  <data name="IsSolved" xml:space="preserve">
+    <value>Is Solved ?</value>
+  </data>
+  <data name="IsWithUs" xml:space="preserve">
+    <value>Is Work With Us</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="JobPlace" xml:space="preserve">
+    <value>Job Place</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Job Title</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="LatestNews" xml:space="preserve">
+    <value>Latest News</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="LinkedInUrl" xml:space="preserve">
+    <value>LinkedIn url</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="LocalCourse" xml:space="preserve">
+    <value>Local Course</value>
+  </data>
+  <data name="LocalTournament" xml:space="preserve">
+    <value>PAF Tournament</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginInfo" xml:space="preserve">
+    <value>Login Info</value>
+  </data>
+  <data name="LoginToYourAccount" xml:space="preserve">
+    <value>Login To Your Account</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="ManagerGroupId" xml:space="preserve">
+    <value>Manager Group</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="MaterialAr" xml:space="preserve">
+    <value>Material Arabic</value>
+  </data>
+  <data name="MaterialEn" xml:space="preserve">
+    <value>Material English</value>
+  </data>
+  <data name="MaxAge" xml:space="preserve">
+    <value>Max Age</value>
+  </data>
+  <data name="MeasruingUnit" xml:space="preserve">
+    <value>Measruing Unit</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="MediaAlbums" xml:space="preserve">
+    <value>Media Albums</value>
+  </data>
+  <data name="MediaType" xml:space="preserve">
+    <value>Media Type</value>
+  </data>
+  <data name="MedicalExamination" xml:space="preserve">
+    <value>Medical Examination</value>
+  </data>
+  <data name="MedicalExaminations" xml:space="preserve">
+    <value>Medical Examinations</value>
+  </data>
+  <data name="MedicalStatus" xml:space="preserve">
+    <value>Medical Status</value>
+  </data>
+  <data name="MemberClub" xml:space="preserve">
+    <value>Member Club</value>
+  </data>
+  <data name="MemberFiles" xml:space="preserve">
+    <value>Member Files</value>
+  </data>
+  <data name="MemberNumbersInCompetitions" xml:space="preserve">
+    <value>Member Numbers In Competitions</value>
+  </data>
+  <data name="MemberOfBoardOfDirectors" xml:space="preserve">
+    <value>Member Of The Board Of Directors</value>
+  </data>
+  <data name="MembersApprove" xml:space="preserve">
+    <value>Members Approve</value>
+  </data>
+  <data name="MemberShip" xml:space="preserve">
+    <value>MemberShip</value>
+  </data>
+  <data name="MemberShipId" xml:space="preserve">
+    <value>MemberShip Id</value>
+  </data>
+  <data name="MemberShipType" xml:space="preserve">
+    <value>MemberShip Type</value>
+  </data>
+  <data name="MembersReject" xml:space="preserve">
+    <value>Members Reject</value>
+  </data>
+  <data name="MemberSummary" xml:space="preserve">
+    <value>Member Data Summary</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MessageFrom" xml:space="preserve">
+    <value>Message From</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="MinAge" xml:space="preserve">
+    <value>Min Age</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="MotherName" xml:space="preserve">
+    <value>Mother's Name</value>
+  </data>
+  <data name="MotherNameAr" xml:space="preserve">
+    <value>Mother Name Arabic</value>
+  </data>
+  <data name="MotherNameEn" xml:space="preserve">
+    <value>Mother's Name En</value>
+  </data>
+  <data name="MultiImages" xml:space="preserve">
+    <value>Multi Images</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameAr" xml:space="preserve">
+    <value>Name Arabic</value>
+  </data>
+  <data name="NameEn" xml:space="preserve">
+    <value>Name English</value>
+  </data>
+  <data name="NamesOfApprovedParticipants" xml:space="preserve">
+    <value>Names Of Approved Participants</value>
+  </data>
+  <data name="NamesOfApprovedPlayers" xml:space="preserve">
+    <value>Names Of Approved Players</value>
+  </data>
+  <data name="NamesOfParticipantsInRace" xml:space="preserve">
+    <value>Names Of Participants In Race</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="NationalMembershipId" xml:space="preserve">
+    <value>National Identity Id</value>
+  </data>
+  <data name="NeedLogin" xml:space="preserve">
+    <value>Need Login</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="NewsCategory" xml:space="preserve">
+    <value>News Category</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NoWorries" xml:space="preserve">
+    <value>No Worries, Click
+                &lt;a href="javascript:;" id="forget-password" style="font-weight:bold"&gt; Here &lt;/a&gt; To Reset Your Password.</value>
+  </data>
+  <data name="Num" xml:space="preserve">
+    <value>Num</value>
+  </data>
+  <data name="Occasion" xml:space="preserve">
+    <value>Occasion</value>
+  </data>
+  <data name="OccasionAr" xml:space="preserve">
+    <value>Occasion Arabic</value>
+  </data>
+  <data name="OccasionEn" xml:space="preserve">
+    <value>Occasion English</value>
+  </data>
+  <data name="OurGoals" xml:space="preserve">
+    <value>Our Goals</value>
+  </data>
+  <data name="OurMethodology" xml:space="preserve">
+    <value>Our Methodology</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="PageType" xml:space="preserve">
+    <value>Page Type</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="ParentConstant" xml:space="preserve">
+    <value>Parent Constant</value>
+  </data>
+  <data name="ParentName" xml:space="preserve">
+    <value>Parent Name</value>
+  </data>
+  <data name="ParentNameAr" xml:space="preserve">
+    <value>Parent Name Ar</value>
+  </data>
+  <data name="ParentNameEn" xml:space="preserve">
+    <value>Parent Name En</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Pass</value>
+  </data>
+  <data name="PassportExpireDate" xml:space="preserve">
+    <value>Passport Expire Date</value>
+  </data>
+  <data name="PassportId" xml:space="preserve">
+    <value>Passport Id</value>
+  </data>
+  <data name="PassportName" xml:space="preserve">
+    <value>Match Passport Name</value>
+  </data>
+  <data name="PassportNumber" xml:space="preserve">
+    <value>Passport Number</value>
+  </data>
+  <data name="PassportType" xml:space="preserve">
+    <value>Passport Type</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Penalties" xml:space="preserve">
+    <value>Penalties</value>
+  </data>
+  <data name="Penalty" xml:space="preserve">
+    <value>Penalty</value>
+  </data>
+  <data name="PenaltyDescription" xml:space="preserve">
+    <value>Penalty Description</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Personal Information</value>
+  </data>
+  <data name="PersonalNumber" xml:space="preserve">
+    <value>Personal Number</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="PlaceAr" xml:space="preserve">
+    <value>Palace Arabic</value>
+  </data>
+  <data name="PlaceEn" xml:space="preserve">
+    <value>Place English</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="PlayerDescription" xml:space="preserve">
+    <value>Player Description</value>
+  </data>
+  <data name="PlayerRaces" xml:space="preserve">
+    <value>Player Races</value>
+  </data>
+  <data name="Players" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="PlayersAchievements" xml:space="preserve">
+    <value>Players Achievements</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="PositionAward" xml:space="preserve">
+    <value>Position \ Award</value>
+  </data>
+  <data name="PositionsAwards" xml:space="preserve">
+    <value>Positions \ Awards</value>
+  </data>
+  <data name="PreviousAwardTitleForPlayer" xml:space="preserve">
+    <value>Previous Award \Title For Player</value>
+  </data>
+  <data name="PreviousClubs" xml:space="preserve">
+    <value>Previous Clubs</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="Programs" xml:space="preserve">
+    <value>Programs</value>
+  </data>
+  <data name="ProjectAddress" xml:space="preserve">
+    <value>Palestine</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Kindergarten Network</value>
+  </data>
+  <data name="Provience" xml:space="preserve">
+    <value>Provience</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Publish Date</value>
+  </data>
+  <data name="Qualification" xml:space="preserve">
+    <value>Qualification</value>
+  </data>
+  <data name="Qualifications" xml:space="preserve">
+    <value>Qualifications</value>
+  </data>
+  <data name="Race" xml:space="preserve">
+    <value>Race</value>
+  </data>
+  <data name="Races" xml:space="preserve">
+    <value>Races</value>
+  </data>
+  <data name="RaceType" xml:space="preserve">
+    <value>Race Type</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Read more</value>
+  </data>
+  <data name="Rebly" xml:space="preserve">
+    <value>Rebly</value>
+  </data>
+  <data name="RecentImages" xml:space="preserve">
+    <value>Recent Images</value>
+  </data>
+  <data name="RecentVideos" xml:space="preserve">
+    <value>Recent Videos</value>
+  </data>
+  <data name="Referee" xml:space="preserve">
+    <value>Referee</value>
+  </data>
+  <data name="RefuseSelected" xml:space="preserve">
+    <value>Refuse Selected</value>
+  </data>
+  <data name="RegCompetetionAgemissmatch" xml:space="preserve">
+    <value>Your age miss match the age conditions</value>
+  </data>
+  <data name="RegCompetitonArEn" xml:space="preserve">
+    <value>للعربية اضغط هنا</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterationPeriodExpired" xml:space="preserve">
+    <value>The registration period has expired</value>
+  </data>
+  <data name="RegisterClubs" xml:space="preserve">
+    <value>Register Clubs</value>
+  </data>
+  <data name="RegisterCompetetionSucessMsg" xml:space="preserve">
+    <value>You have successfully registered</value>
+  </data>
+  <data name="RegisterDate" xml:space="preserve">
+    <value>Register Date</value>
+  </data>
+  <data name="RegisteredPlayers" xml:space="preserve">
+    <value>Registered Players</value>
+  </data>
+  <data name="RegisterMember" xml:space="preserve">
+    <value>Register Member</value>
+  </data>
+  <data name="RegisterPlayer" xml:space="preserve">
+    <value>Register Player</value>
+  </data>
+  <data name="RegisterPlayerInOpenTournament" xml:space="preserve">
+    <value>Register Player In Open Tournament</value>
+  </data>
+  <data name="RegisterPlayerInPrivateTournament" xml:space="preserve">
+    <value>Register Player In Private Tournament</value>
+  </data>
+  <data name="RegisterPlayers" xml:space="preserve">
+    <value>Register Players</value>
+  </data>
+  <data name="RegistrationDate" xml:space="preserve">
+    <value>Registration Date</value>
+  </data>
+  <data name="RegistrationEndDate" xml:space="preserve">
+    <value>Registration End Date</value>
+  </data>
+  <data name="RegistrationStartDate" xml:space="preserve">
+    <value>Registration Start Date</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RequiredFields" xml:space="preserve">
+    <value>Please fill in all reuired fields</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>-Select-</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Select City</value>
+  </data>
+  <data name="SelectDocument" xml:space="preserve">
+    <value>Select Document</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="SelectImage" xml:space="preserve">
+    <value>Select Image</value>
+  </data>
+  <data name="SelectParent" xml:space="preserve">
+    <value>Select Parent</value>
+  </data>
+  <data name="SelectUserType" xml:space="preserve">
+    <value>Select User Type</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="ShowInPlayerProfile" xml:space="preserve">
+    <value>Show In Player Profile ?</value>
+  </data>
+  <data name="ShowInWeb" xml:space="preserve">
+    <value>Show In Web</value>
+  </data>
+  <data name="SingelNews" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="SocialNetwork" xml:space="preserve">
+    <value>Social Network</value>
+  </data>
+  <data name="SocialStatus" xml:space="preserve">
+    <value>Social Status</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Sport</value>
+  </data>
+  <data name="Sports" xml:space="preserve">
+    <value>Sports</value>
+  </data>
+  <data name="SportsHealth" xml:space="preserve">
+    <value>Sports Health</value>
+  </data>
+  <data name="SportsTypes" xml:space="preserve">
+    <value>Sports Types</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Statment" xml:space="preserve">
+    <value>Statment</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="SystemSettinges" xml:space="preserve">
+    <value>System Settinges</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TargetGroup" xml:space="preserve">
+    <value>Target Group</value>
+  </data>
+  <data name="Teacher" xml:space="preserve">
+    <value>Teacher</value>
+  </data>
+  <data name="TeacherAr" xml:space="preserve">
+    <value>Teacher Arabic</value>
+  </data>
+  <data name="TeacherEn" xml:space="preserve">
+    <value>Teacher English</value>
+  </data>
+  <data name="TeamMember" xml:space="preserve">
+    <value>Team Member</value>
+  </data>
+  <data name="TermsConditions" xml:space="preserve">
+    <value>Terms Conditions</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="Tournament" xml:space="preserve">
+    <value>Tournament</value>
+  </data>
+  <data name="TournamentEn" xml:space="preserve">
+    <value>Tournament English</value>
+  </data>
+  <data name="TraceUserActivity" xml:space="preserve">
+    <value>Trace User Activity</value>
+  </data>
+  <data name="Trainer" xml:space="preserve">
+    <value>Trainer</value>
+  </data>
+  <data name="TrainingCamp" xml:space="preserve">
+    <value>Training Camp</value>
+  </data>
+  <data name="TrainingCamps" xml:space="preserve">
+    <value>Training Camps</value>
+  </data>
+  <data name="TshirtSize" xml:space="preserve">
+    <value>T-Shirt Size</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UnApproved" xml:space="preserve">
+    <value>UnApproved</value>
+  </data>
+  <data name="UnionCamps" xml:space="preserve">
+    <value>Union Camps</value>
+  </data>
+  <data name="UnionCourses" xml:space="preserve">
+    <value>Union Courses</value>
+  </data>
+  <data name="UnionFiles" xml:space="preserve">
+    <value>Union Files</value>
+  </data>
+  <data name="UnionMangers" xml:space="preserve">
+    <value>Union Mangers</value>
+  </data>
+  <data name="UnRead" xml:space="preserve">
+    <value>UnRead</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="UploadDocs" xml:space="preserve">
+    <value>Attachments&lt;br&gt;(ID Card/Passport)</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserType" xml:space="preserve">
+    <value>User Type</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>View All</value>
+  </data>
+  <data name="VisitorMessages" xml:space="preserve">
+    <value>Visitor Messages</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="YouCanShareIt" xml:space="preserve">
+    <value>You Can Share It</value>
+  </data>
+  <data name="YouHave" xml:space="preserve">
+    <value>You Have</value>
+  </data>
+</root>

@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "تسجيل الدخول";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}   
+ <!-- BEGIN LOGIN FORM -->
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @onsubmit = "return false;", @id = "loginForm", name = "loginForm" }))
+{
+    <div class="logo" style="margin-top : 20px">
+        <a href="#">
+            <img src="~/Content/UploadedFile/logos/logo1.png" style="width: 220px"/>
+            @*<img src="~/Content/UploadedFile/logos/logo.png" style="width: 250px" />*@
+        </a>
+    </div>
+    <h3 class="form-title">
+        @kindergartenNetwork.Resources.PublicNews.LoginToYourAccount
+    </h3>
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            <span>@kindergartenNetwork.Resources.PublicNews.EnterAnyUsernameAndPassword</span>
+        </div>
+        <input type="hidden" value="@ViewBag.returnUrl" name="returnUrl" />
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">@kindergartenNetwork.Resources.PublicNews.Email</label>
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="@kindergartenNetwork.Resources.PublicNews.Email" name="Email" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">@kindergartenNetwork.Resources.PublicNews.Password</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="@kindergartenNetwork.Resources.PublicNews.Password" name="Password" />
+            </div>
+        </div>
+        @*<div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Language</label>
+                <select class="form-control" name="Language">
+                    <option value="">Select Language</option>
+                    <option value="ar-sa">العربية</option>
+                    <option value="en-us">English</option>
+                </select>
+            </div>*@
+        <div class="form-actions">
+            <label class="rememberme mt-checkbox mt-checkbox-outline">
+                <input type="checkbox" name="Remember" value="1" /> @kindergartenNetwork.Resources.PublicNews.RememberMe
+                <span></span>
+            </label>
+            <button type="submit" class="btn green-jungle pull-right">@kindergartenNetwork.Resources.PublicNews.Login </button>
+        </div>
+
+        @*<div class="forget-password">
+            <h4>@kindergartenNetwork.Resources.PublicNews.ForgotYourPassword</h4>
+            <p> @Html.Raw(kindergartenNetwork.Resources.PublicNews.NoWorries) </p>
+        </div>*@
+}
+<!-- END LOGIN FORM -->
+<!-- BEGIN FORGOT PASSWORD FORM -->
+        <form class="forget-form" action="index.html" method="post">
+            <div class="logo" style="margin-top : 20px">
+                <a href="#">
+                    <img src="~/Content/UploadedFile/logos/logo1.png" style="width: 220px" />
+                    @*<img src="~/Content/UploadedFile/logos/logo.png" style="width: 250px" />*@
+                </a>
+            </div>
+            <h3>@kindergartenNetwork.Resources.PublicNews.ForgotYourPassword</h3>
+            <p> @kindergartenNetwork.Resources.PublicNews.EnterYourEmailAddressBelowToResetYourPassword. </p>
+            <div class="form-group">
+                <div class="input-icon">
+                    <i class="fa fa-envelope"></i>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-btn" class="btn red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Back </button>
+                <button type="submit" class="btn green-jungle pull-right"> @kindergartenNetwork.Resources.PublicNews.Send </button>
+            </div>
+        </form>
+<!-- END FORGOT PASSWORD FORM -->
+<!-- BEGIN REGISTRATION FORM -->
+<!-- END REGISTRATION FORM -->

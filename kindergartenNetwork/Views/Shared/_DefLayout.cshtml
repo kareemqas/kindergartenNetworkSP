@@ -1,0 +1,254 @@
+﻿@using kindergartenNetwork.Resources
+@{
+    var oUser = (kindergartenNetwork.Models.CustomPrincipal)ViewContext.ViewData["User"];
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.MetaDescription">
+    <meta name="keywords" content="@ViewBag.MetaKeywords">
+    @RenderSection("meta", false)
+
+    <!-- Bootstrap Rtl Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/bootstrap.rtl.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/owl.carousel.min.css">
+    <!-- Owl Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/magnific-popup.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/boxicons.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/nice-select.min.css">
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/odometer.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/responsive.css">
+    <!-- Rtl CSS -->
+    <link rel="stylesheet" href="/Content/defaultTheme/assets/css/rtl.css">
+    <link rel="stylesheet" href="~/Content/assets/global/plugins/font-awesome/css/font-awesome.min.css">
+    <link href="~/Content/assets/global/plugins/jssocials/jssocials.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/jssocials/jssocials-theme-flat.css" rel="stylesheet" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/Content/defaultTheme/assets/img/logo2.png">
+    <!-- Title -->
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <!-- Start Preloader Area -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="dot-wrap">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader Area -->
+    <!-- Start Navbar Area -->
+    <div class="navbar-area">
+        <!-- Menu For Mobile Device -->
+        <div class="mobile-nav">
+            <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)" class="logo">
+                <img src="/Content/defaultTheme/assets/img/logo2.png" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Menu For Desktop Device -->
+        <div class="main-nav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        <img src="/Content/defaultTheme/assets/img/logo2.png" alt="Logo">
+                    </a>
+
+                    <div class="collapse navbar-collapse mean-menu">
+                        <ul class="navbar-nav m-auto">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Home").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("Index").ToLower()) ? "active" : "")">
+                                    @PublicNews.Home
+                                </a>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("About","Home",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Home").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("About").ToLower()) ? "active" : "")">من نحن</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index","News",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("News").ToLower()) ? "active" : "")">
+                                    @PublicNews.News
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index","Articles",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Articles").ToLower()) ? "active" : "")">
+                                    @PublicNews.Articles
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="javascript:;" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Sources").ToLower()) ? "active" : "")">
+                                    المصادر
+                                    <i class="bx bx-chevron-down"></i>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("EducationalResources","Sources",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Sources").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("EducationalResources").ToLower()) ? "active" : "")">المصادر التعليمية</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Instructors","Sources",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Sources").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("Instructors").ToLower()) ? "active" : "")">مصادر المعلومات</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a href="javascript:;" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Media").ToLower()) ? "active" : "")">
+                                    المعرض
+                                    <i class="bx bx-chevron-down"></i>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ImagesGallery","Media",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Media").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("ImagesGallery").ToLower()) ? "active" : "")">معرض الصور</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("VideosGallery","Media",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Media").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("VideosGallery").ToLower()) ? "active" : "")">معرض الفيديو</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Contact","Home",null,Request.Url.Scheme)" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains(Convert.ToString("Home").ToLower()) && ViewContext.RouteData.Values["Action"].ToString().ToLower().Contains(Convert.ToString("Contact").ToLower()) ? "active" : "")">تواصل معنا</a>
+                            </li>
+                        </ul>
+
+                        @if (oUser == null)
+                        {
+                            <!-- Start Other Option -->
+                            <div class="others-option">
+
+                                <div class="register">
+                                    <a href="@Url.Action("Login", "Home", null, Request.Url.Scheme)" class="default-btn">
+                                        تسجيل دخول
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Other Option -->
+                        }
+                        else
+                        {
+                            <div class="others-option">
+
+                                <div class="register">
+                                    <a href="@Url.Action("LogOut","Home",null,Request.Url.Scheme)" title="تسجيل خروج" class="default-btn">
+                                        @oUser.Name
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar Area -->
+
+    @RenderBody()
+
+    <!-- Start Footer Bottom Area -->
+    <footer class="footer-bottom-area">
+        <div class="container">
+
+            <div class="copyright-wrap">
+
+                <p>
+                    جميع الحقوق محفوظة&copy;
+                    <script>document.write(new Date().getFullYear())</script>
+                    لمنتدى غزة للطفولة المبكرة.صمم بواسطة <a href="https://bosala.tech/" target="blank">فريق بوصلة</a>
+                </p>
+
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Bottom Area -->
+    <!-- Start Go Top Area -->
+    <div class="go-top">
+        <i class='bx bx-chevrons-up'></i>
+        <i class='bx bx-chevrons-up'></i>
+    </div>
+    <!-- End Go Top Area -->
+    <!-- Jquery Min JS -->
+    <script src="/Content/defaultTheme/assets/js/jquery.min.js"></script>
+    <!-- Bootstrap Bundle Min JS -->
+    <script src="/Content/defaultTheme/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Meanmenu Min JS -->
+    <script src="/Content/defaultTheme/assets/js/meanmenu.min.js"></script>
+    <!-- Owl Carousel Min JS -->
+    <script src="/Content/defaultTheme/assets/js/owl.carousel.min.js"></script>
+    <!-- Wow Min JS -->
+    <script src="/Content/defaultTheme/assets/js/wow.min.js"></script>
+    <!-- Nice Select Min JS -->
+    <script src="/Content/defaultTheme/assets/js/nice-select.min.js"></script>
+    <!-- Magnific Popup Min JS -->
+    <script src="/Content/defaultTheme/assets/js/magnific-popup.min.js"></script>
+    <!-- jarallax Min JS -->
+    <script src="/Content/defaultTheme/assets/js/jarallax.min.js"></script>
+    <!-- Appear Min JS -->
+    <script src="/Content/defaultTheme/assets/js/appear.min.js"></script>
+    <!-- Odometer JS -->
+    <script src="/Content/defaultTheme/assets/js/odometer.min.js"></script>
+    <!-- Form Validator Min JS -->
+    <script src="/Content/defaultTheme/assets/js/form-validator.min.js"></script>
+    <!-- Contact JS -->
+    <script src="/Content/defaultTheme/assets/js/contact-form-script.js"></script>
+    <!-- Ajaxchimp Min JS -->
+    <script src="/Content/defaultTheme/assets/js/ajaxchimp.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/Content/defaultTheme/assets/js/custom.js"></script>
+    <script src="~/Content/assets/global/plugins/jssocials/jssocials.min.js"></script>
+    <script>
+        @{
+            string FBURL = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.0";
+            if (Convert.ToString(ViewBag.LangTowLetterCode) == "ar")
+            {
+                FBURL = "https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.0";
+            }
+        }
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = '@Html.Raw(FBURL)';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    @RenderSection("scripts", false)
+    <script>
+        jQuery(document).ready(function () {
+            @RenderSection("OnReadyScripts", required: false)
+        });
+    </script>
+</body>
+</html>

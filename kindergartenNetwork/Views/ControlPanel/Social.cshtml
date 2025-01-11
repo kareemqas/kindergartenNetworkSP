@@ -1,0 +1,53 @@
+﻿@model kindergartenNetwork.Models.NewsModels.SocialModel
+@using (Html.BeginForm("UpdateSocial", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "UpdateSocial", name = "UpdateSocial" }))
+{
+    <div class="portlet light portlet-fit bg-inverse">
+        <div class="portlet-title">
+            <div class="caption">
+                <span class="caption-subject font-red-thunderbird bold uppercase"> @kindergartenNetwork.Resources.PublicNews.SocialNetwork </span>
+            </div>
+        </div>
+        <div class="portle-body">
+
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal ">
+                    @Html.AntiForgeryToken()
+                    @foreach (var social in Model.LstSocial)
+                    {
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <a class="social-icon social-icon-color @social.Icon"></a>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="formElement">
+                                    <input type="text" id="txt_@social.Id" SID="@social.Id" name="txtTitle" value="@social.Link" class="form-control social" placeholder="@social.Name" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn dark btn-outline closeModal">@kindergartenNetwork.Resources.PublicNews.Close</button>*@
+                <button type="submit" class="btn green btn-outline" id="btnAdd">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+    </div>
+}
+@section style{
+    <link href="~/Content/socialIcon/icons.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/ControlPanelScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ControlPanelScripts.initSocial();
+}

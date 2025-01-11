@@ -1,0 +1,60 @@
+﻿@model kindergartenNetwork.Models.CustomPrincipal
+<ul class="page-breadcrumb">
+    @if (Model != null)
+    {
+        var mainHrPages = kindergartenNetwork.Helper.CommonHelpExtension.GetMenuPages(Model.UserTypeId, false);
+        string currentPage = ViewContext.RouteData.Values["controller"] + "/" + ViewContext.RouteData.Values["action"];
+        //if (ViewContext.RouteData.Values["id"] != null && !string.IsNullOrEmpty(ViewContext.RouteData.Values["id"].ToString()))
+        //{
+        //    currentPage += "/" + ViewContext.RouteData.Values["id"].ToString();
+        //}
+        //if (ViewContext.RequestContext.HttpContext.Request.QueryString["id"] != null && !string.IsNullOrEmpty(ViewContext.RequestContext.HttpContext.Request.QueryString["id"]))
+        //{
+        //    currentPage += "?id=" + ViewContext.RequestContext.HttpContext.Request.QueryString["id"];
+        //}
+        foreach (var mp in mainHrPages.Where(p => p.Link?.ToLower() == currentPage.ToLower()))
+        {
+            if (currentPage.ToLower() != "controlpanel/index")
+            {
+                @RenderHrMenuItem(mainHrPages, mp)
+                ;
+                <li>
+                    <a href=@(!string.IsNullOrEmpty(mp.Link) ? "/" + mp.Link?.Replace("Index","") + "" : "javascript:;")>
+                        @*<i class="@mp.Icon"></i>*@
+                        <span class="title">
+                            @mp.Name
+                        </span>
+                    </a>
+                    @*<i class="fa fa-angle-left"></i>*@
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="/ControlPanel">
+                        <i class="fa fa-home"></i>
+                        <span class="title">
+                            @kindergartenNetwork.Resources.PublicNews.Home
+                        </span>
+                    </a>
+                </li>
+            }
+        }
+    }
+    @helper RenderHrMenuItem(List<DTO.Account.Pages> menuList, DTO.Account.Pages mi)
+    {
+        foreach (var cp in menuList.Where(p => p.Id == mi.ParentId))
+        {
+            @RenderHrMenuItem(menuList, cp)
+            <li>
+                <a href=@(!string.IsNullOrEmpty(cp.Link) ? "/" + cp.Link?.Replace("Index","") + "" : "javascript:;")>
+                    @*<i class="@cp.Icon"></i>*@
+                    <span class="title">
+                    @cp.Name
+                </span>
+                </a>
+                <i class="fa fa-angle-left"></i>
+            </li>
+        }
+    }
+</ul>

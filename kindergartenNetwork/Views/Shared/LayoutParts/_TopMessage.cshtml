@@ -1,0 +1,82 @@
+﻿@{
+    var getUnreadMessage = DAL.News.ContactUs.ContactUsGet(new DTO.News.ContactUs { IsRead = false, IsList = true });
+    var getMessageResult = new List<DTO.News.ContactUs>();
+    if (getUnreadMessage.HasResult)
+    {
+        getMessageResult = getUnreadMessage.Results;
+    }
+    var getUnApprovedComments = DAL.News.Comments.CommentsGet(new DTO.News.Comments { IsApproved = false, IsList = true });
+    var getCommentsResult = new List<DTO.News.Comments>();
+    if (getUnApprovedComments.HasResult)
+    {
+        getCommentsResult = getUnApprovedComments.Results;
+    }
+}
+<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <i class="fa fa-comments"></i>
+        <span class="badge badge-default"> <span class="commentsCounter">@getCommentsResult.Count() </span></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="external">
+            <h3>
+                @kindergartenNetwork.Resources.PublicNews.YouHave
+                <span class="bold"><span class="commentsCounter">@getCommentsResult.Count()</span> @kindergartenNetwork.Resources.PublicNews.Comments</span> @kindergartenNetwork.Resources.PublicNews.UnApproved
+            </h3>
+            <a href="/ControlPanel/Comments">@kindergartenNetwork.Resources.PublicNews.ViewAll</a>
+        </li>
+        <li>
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 275px;">
+                <ul class="dropdown-menu-list scroller" style="height: 275px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
+                    @foreach (var msg in getCommentsResult)
+                    {
+                        <li class="btnViewComment" data-id="@msg.Id">
+                            <a href="javascript:;">
+                                <span class="subject">
+                                    <span class="from"> @msg.Name </span>
+                                    <span class="time">@msg.Date.ToString("dd-MM-yyyy") </span>
+                                </span>
+                                <span class="message"> @(msg.Comment.Length > 65 ? msg.Comment.Substring(0, 65) + "..." : msg.Comment) </span>
+                            </a>
+                        </li>
+                    }
+
+                </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+        </li>
+    </ul>
+</li>
+<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+        <i class="icon-envelope-open"></i>
+        <span class="badge badge-default"> <span class="msgCounter">@getMessageResult.Count() </span></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="external">
+            <h3>
+                @kindergartenNetwork.Resources.PublicNews.YouHave
+                <span class="bold"><span class="msgCounter">@getMessageResult.Count()</span> @kindergartenNetwork.Resources.PublicNews.Messages</span> @kindergartenNetwork.Resources.PublicNews.UnRead
+            </h3>
+            <a href="/ControlPanel/ContactUs">@kindergartenNetwork.Resources.PublicNews.ViewAll</a>
+        </li>
+        <li>
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 275px;">
+                <ul class="dropdown-menu-list scroller" style="height: 275px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
+                    @foreach (var msg in getMessageResult)
+                    {
+                        <li class="btnViewContactUs" data-id="@msg.Id">
+                            <a href="javascript:;">
+                                <span class="subject">
+                                    <span class="from"> @msg.Name </span>
+                                    <span class="time">@msg.InsertedDate.ToString("dd-MM-yyyy") </span>
+                                </span>
+                                <span class="message"> @msg.Subject </span>
+                            </a>
+                        </li>
+                    }
+
+                </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+        </li>
+    </ul>
+</li>

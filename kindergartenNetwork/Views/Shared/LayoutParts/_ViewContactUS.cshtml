@@ -1,0 +1,95 @@
+﻿@model kindergartenNetwork.Models.NewsModels.ContactUsModel
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.MessageFrom @Model.OContactUs.Name </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Name :</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static"> @Model.OContactUs.Name </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Email :</label>
+                        <div class="col-md-8">
+                            <p class="form-control-static"> @Model.OContactUs.Email </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Subject :</label>
+                        <div class="col-md-10">
+                            <p class="form-control-static"> @Model.OContactUs.Subject </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-2 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Details :</label>
+                        <div class="col-md-10">
+                            <p class="form-control-static"> @Model.OContactUs.Message </p>
+                        </div>
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.OContactUs.Reply))
+                {
+                    <hr />
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 font-red-thunderbird">@kindergartenNetwork.Resources.PublicNews.Rebly :</label>
+                            <div class="col-md-10">
+                                <p class="form-control-static"> @Model.OContactUs.Reply </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (!Model.OContactUs.IsAnswered)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm("ReplyContactUs", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "ReplyContactUsForm", name = "ReplyContactUsForm" }))
+                        {
+                            <div class="alert alert-danger display-hide">
+                                <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                            </div>
+                            <div class="alert alert-success display-hide">
+                                <button class="close" data-close="alert"></button>
+                            </div>
+                            <div class="form-horizontal ">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="Id" value="@Model.OContactUs.Id" />
+                                <input type="hidden" name="email" value="@Model.OContactUs.Email" />
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>@kindergartenNetwork.Resources.PublicNews.Rebly</label>
+                                        <div class="formElement">
+                                            <textarea rows="5" class="form-control" name="Reply" placeholder="@kindergartenNetwork.Resources.PublicNews.Rebly" data-field="@kindergartenNetwork.Resources.PublicNews.Rebly"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Send</button>
+                                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</div>
+}

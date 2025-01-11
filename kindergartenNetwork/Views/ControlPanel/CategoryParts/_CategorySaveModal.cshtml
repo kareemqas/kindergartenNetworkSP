@@ -1,0 +1,55 @@
+﻿@model kindergartenNetwork.Models.NewsModels.CategoryModel
+@using (Html.BeginForm("SaveCategory", "ControlPanel", FormMethod.Post, new { @onsubmit = "return false;", @id = "SaveCategoryForm", name = "SaveCategoryForm" }))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                @if (Model.OCategory.Id > 0)
+                {
+                <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Edit @kindergartenNetwork.Resources.PublicNews.Category </h4>
+                    <input type="hidden" value="@Model.OCategory.Id" Name="Id" data-field="" />
+
+                }
+                else
+                {
+                    <h4 class="modal-title"> @kindergartenNetwork.Resources.PublicNews.Add @kindergartenNetwork.Resources.PublicNews.Category </h4>
+
+                }
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button> @kindergartenNetwork.Resources.PublicNews.ErrorInField.
+                </div>
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
+                <div class="form-horizontal ">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.Name</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbNameAr" value="@Model.OCategory.NameAr" name="NameAr" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.Name" data-field="@kindergartenNetwork.Resources.PublicNews.Name" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-md-3 control-label">@kindergartenNetwork.Resources.PublicNews.NameEn</label>
+                        <div class="col-md-9">
+                            <div class="formElement">
+                                <input type="text" id="tbNameEn" value="@Model.OCategory.NameEn" name="NameEn" class="form-control" placeholder="@kindergartenNetwork.Resources.PublicNews.NameEn" data-field="@kindergartenNetwork.Resources.PublicNews.NameEn" />
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">@kindergartenNetwork.Resources.PublicNews.Close</button>
+                <button type="submit" class="btn green btn-outline">@kindergartenNetwork.Resources.PublicNews.Save</button>
+                <button type="reset" class="btn red btn-outline">@kindergartenNetwork.Resources.PublicNews.Reset</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+}

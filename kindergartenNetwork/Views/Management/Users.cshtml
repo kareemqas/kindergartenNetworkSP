@@ -1,0 +1,84 @@
+﻿@model kindergartenNetwork.Models.MainModels.UserModel
+
+<div class="portlet light portlet-fit ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-layers font-red-thunderbird"></i>
+            <span class="caption-subject font-red-thunderbird bold uppercase">@ViewBag.PageTitle</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <form id="SearchForm">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-md input-medium" dir="rtl" id="txtUserSearch" placeholder="@kindergartenNetwork.Resources.PublicNews.Name.." />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control input-md input-medium selectpicker" data-live-search="true" id="ddlUserType" title="@kindergartenNetwork.Resources.PublicNews.Title">
+                            <option value="-1">@kindergartenNetwork.Resources.PublicNews.Select</option>
+                            @foreach (var userType in Model.LstUserTypes)
+                            {
+                                <option value="@userType.Id">@userType.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.col-md-6 -->
+                <div class="col-md-2">
+                    <button type="button" class="btn btnx green btn-outline btn-md" id="btnSearch"><i class="fa fa-search"></i></button>
+                    <button type="reset" class="btn btnx red btn-outline btn-md" id="btnClearForm"><i class="fa fa-undo"></i></button>
+                    <button type="button" class="btn btnx blue btn-outline btn-md" id="btnGetInsertUserModal"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12 ">
+                        <table class="table table-bordered table-advance table-hover" id="tblUsers" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Avatar</th>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Name</th>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Email</th>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Mobile</th>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.Gender</th>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.UserType</th>
+                                    <th scope="col"> @kindergartenNetwork.Resources.PublicNews.IsActive</th>
+                                    <th scope="col"><i class="icon-settings"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section style{
+    @Styles.Render("~/DataTables/css")
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle !important;
+        }
+    </style>
+
+    <link href="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
+    <link href="~/Content/assets/global/plugins/typeahead/typeahead.css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render("~/DataTables/Js")
+    @Scripts.Render("~/Typeahead/Js")
+    <script src="~/Content/assets/global/plugins/bootbox/bootbox.min.js"></script>
+    <script src="~/Content/assets/global/plugins/jquery-validation/js/jquery.validate.js"></script>
+    <script src="~/Content/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+    <script src="~/Scripts/ManagementScripts.js"></script>
+}
+@section OnReadyScripts
+{
+    ManagementScripts.initUsers();
+}

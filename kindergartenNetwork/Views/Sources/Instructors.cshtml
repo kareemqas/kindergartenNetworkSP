@@ -1,0 +1,139 @@
+﻿@model kindergartenNetwork.Models.NewsModels.TeamMembersModel
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.Instructors + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+    var pageHdr = DAL.News.PagesHdr.GetPagesHdr(new DTO.News.PagesHdr { Id = 7 }).Results.First();
+}
+
+
+<!-- Start Page Title Area -->
+<div class="page-title-area bg-2" style="background-image: url(../Content/UploadedFile/News/Original/@pageHdr.Image)">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>مصادر المعلومات والبيانات</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        @kindergartenNetwork.Resources.PublicNews.Home
+                    </a>
+                </li>
+
+                <li class="active">مصادر المعلومات والبيانات</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+
+<!-- Start Teachers Area -->
+<section class="teachers-area-three ptb-100">
+    <div class="container">
+        <div class="section-title">
+            <span>الأفراد العاملين</span>
+            <h2>الأفراد العاملين في قطاع الطفولة</h2>
+        </div>
+
+    <div class="row">
+    @if (Model.Count > 0)
+    {
+        foreach (var member in Model.LstTeamMembers)
+        {
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-teachers">
+                    <img style="max-height: 150px" src="/Content/UploadedFile/Account/Avatar/Thumbnail/@member.Avatar" onerror="this.onerror = null;this.src = '/Content/UploadedFile/Account/Avatar/NoImage.png';" alt="Image">
+
+                    <div class="teachers-content">
+                        <ul>
+                            @if (!string.IsNullOrEmpty(member.InstgramUrl))
+                            {
+                                <li>
+                                    <a href="@member.InstgramUrl"><i class="bx bxl-instagram"></i></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(member.FaceBookUrl))
+                            {
+                                <li>
+                                    <a href="@member.FaceBookUrl"><i class="bx bxl-facebook"></i></a>
+                                </li>
+                            }
+                            @if (!string.IsNullOrEmpty(member.LinkedInUrl))
+                            {
+                                <li>
+                                    <a href="@member.LinkedInUrl"><i class="bx bxl-linkedin-square"></i></a>
+                                </li>
+                            }
+                        </ul>
+
+                        <h3>@member.Name</h3>
+                        <span>@member.JobTitle</span>
+                    </div>
+                </div>
+            </div>
+
+        }
+    <div class="col-lg-12 col-md-12">
+        <div class="pagination-area">
+            @{
+                var totalPages = Convert.ToInt32(Math.Ceiling(Model.Count / 8.0));
+                var currentPage = Request.QueryString["page"] != null ? Convert.ToInt32(Request.QueryString["page"]) : 1;
+                var startPage = currentPage - 5;
+                var endPage = currentPage + 4;
+                if (startPage <= 0)
+                {
+                    endPage -= (startPage - 1);
+                    startPage = 1;
+                }
+                if (endPage > totalPages)
+                {
+                    endPage = totalPages;
+                    if (endPage > 5)
+                    {
+                        startPage = endPage - 4;
+                    }
+                }
+
+                var TotalItems = Model.Count;
+                var CurrentPage = currentPage;
+                var TotalPages = totalPages;
+                var StartPage = startPage;
+                var EndPage = endPage;
+
+                if (EndPage > 1)
+                {
+
+                    if (CurrentPage > 1)
+                    {
+
+                        <a href="@Url.Action("Instructors", "Sources", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page = currentPage - 1})" class="next page-numbers">
+                            <i class="bx bx-chevron-right"></i>
+                        </a>
+                    }
+                    for (var page = StartPage; page <= EndPage; page++)
+                    {
+                        if (page == CurrentPage)
+                        {
+                            <span class="page-numbers current" aria-current="page">@page</span>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Instructors", "Sources", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page})" class="page-numbers">@page</a>
+                        }
+
+                    }
+                    if (currentPage < totalPages)
+                    {
+                        <a href="@Url.Action("Instructors", "Sources", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page = currentPage + 1})" class="previous page-numbers">
+                            <i class="bx bx-chevron-left"></i>
+                        </a>
+                    }
+
+                }
+            }
+        </div>
+    </div>
+    }
+    </div>
+    </div>
+</section>
+<!-- End Teachers Area -->

@@ -1,0 +1,173 @@
+﻿@model kindergartenNetwork.Models.NewsModels.EducationalResourceModel
+@{
+    ViewBag.Title = kindergartenNetwork.Resources.PublicNews.EducationalResources + " | " + kindergartenNetwork.Resources.PublicNews.ProjectName;
+    Layout = "~/Views/Shared/_DefLayout.cshtml";
+    var pageHdr = DAL.News.PagesHdr.GetPagesHdr(new DTO.News.PagesHdr { Id = 6 }).Results.First();
+}
+
+
+<!-- Start Page Title Area -->
+<div class="page-title-area bg-4" style="background-image: url(../Content/UploadedFile/News/Original/@pageHdr.Image)">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>المصادر التعليمية ومراجع الطفولة المبكرة</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index","Home",null,Request.Url.Scheme)">
+                        @kindergartenNetwork.Resources.PublicNews.Home
+                    </a>
+                </li>
+
+                <li class="active">المصادر التعليمية</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Popular Courses Area -->
+<section class="courses-area-style ptb-100">
+    <div class="container">
+        <div class="showing-result">
+            <div class="row align-items-center">
+
+
+                <div class="col-lg-3 col-md-4">
+                    
+                    <div class="showing-top-bar-ordering">
+                        <select id="ddlTypes">
+                            <option value="">ترتيب تلقائي</option>
+                            @if (Model.LstFileTypes != null && Model.LstFileTypes.Count > 0)
+                            {
+                                foreach (var type in Model.LstFileTypes)
+                                {
+                                    <option value="@type.Id">@type.Name</option>
+                                }
+                            }
+                        </select>
+
+                    </div>
+                </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <form class="search-form">
+                            <input class="form-control" name="search" placeholder="البحث في المصادر التعليمية" type="text">
+                            <button style="display: none" class="search-btn" type="submit">
+                                <i class="bx bx-search"></i>
+                            </button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            @if (Model.Count > 0)
+            {
+                foreach (var resource in Model.LstEducationalResources)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-course">
+                            <a href="javascript:;">
+                                <img src="/Content/UploadedFile/Albums/Thumbnail/@resource.Image" width="570" style="height: 330px;" onerror="this.onerror = null;this.src = '/Content/UploadedFile/Albums/NoImage.jpg';" alt="file">
+                            </a>
+
+                            <div class="course-content">
+
+                                <span class="tag">@resource.OFileType.Name</span>
+
+                                <a href="javascript:;">
+
+                                    <h3>@resource.FileTitle</h3>
+
+                                </a>
+
+
+                                <p>@resource.FileDescription </p>
+
+                                <div class="Download">
+                                    <a href="/Content/UploadedFile/Attachments/@resource.FilePath" download="@resource.FileTitle" target="_blank" class="default-btn">
+                                        تنزيل
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-lg-12 col-md-12">
+                    <div class="pagination-area">
+                        @{
+                            var totalPages = Convert.ToInt32(Math.Ceiling(Model.Count / 9.0));
+                            var currentPage = Request.QueryString["page"] != null ? Convert.ToInt32(Request.QueryString["page"]) : 1;
+                            var startPage = currentPage - 5;
+                            var endPage = currentPage + 4;
+                            if (startPage <= 0)
+                            {
+                                endPage -= (startPage - 1);
+                                startPage = 1;
+                            }
+                            if (endPage > totalPages)
+                            {
+                                endPage = totalPages;
+                                if (endPage > 5)
+                                {
+                                    startPage = endPage - 4;
+                                }
+                            }
+
+                            var TotalItems = Model.Count;
+                            var CurrentPage = currentPage;
+                            var TotalPages = totalPages;
+                            var StartPage = startPage;
+                            var EndPage = endPage;
+
+                            if (EndPage > 1)
+                            {
+
+                                if (CurrentPage > 1)
+                                {
+
+                                    <a href="@Url.Action("EducationalResources", "Sources", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page = currentPage - 1})" class="next page-numbers">
+                                        <i class="bx bx-chevron-right"></i>
+                                    </a>
+                                }
+                                for (var page = StartPage; page <= EndPage; page++)
+                                {
+                                    if (page == CurrentPage)
+                                    {
+                                        <span class="page-numbers current" aria-current="page">@page</span>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("EducationalResources", "Sources", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page})" class="page-numbers">@page</a>
+                                    }
+
+                                }
+                                if (currentPage < totalPages)
+                                {
+                                    <a href="@Url.Action("EducationalResources", "Sources", new {id = !String.IsNullOrEmpty(Request.QueryString["id"]) ? Convert.ToString(Request.QueryString["id"]) : Url.RequestContext.RouteData.Values["id"], page = currentPage + 1})" class="previous page-numbers">
+                                        <i class="bx bx-chevron-left"></i>
+                                    </a>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- End Popular Courses Area -->
+@section OnReadyScripts
+{
+        $("#ddlTypes").off("change").change(function () {
+            var x = "?";
+            var url = window.location.href;
+            if (url.indexOf('?') > -1)
+                x = "&";
+            url = window.location.href + x +"category=" + $(this).val();
+            window.location.replace(url);
+        });
+}
